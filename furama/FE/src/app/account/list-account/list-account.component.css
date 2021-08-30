@@ -1,0 +1,26 @@
+.lable{
+  padding: 8px 10px;
+  border-radius: 2px;
+  color: #ffffff;
+  min-width: 100px;
+}
+.lable-active{
+  background-color: #04aa6d;
+}
+.lable-inactive{
+  background-color: #fa4444;
+}
+td i{
+  color: blue;
+  font-size: 25px;
+  padding: 0 10px;
+}
+
+td:hover{
+  cursor: pointer;
+}
+
+.action:hover{
+  background-color: #04aa6d;
+  color: #ffffff;
+}

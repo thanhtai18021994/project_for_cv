@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="container-fluid bg-white pt-3 pb-3">
+    <h3 class="title-component text-dark" (click)="getUser()">Danh sách Tai Khoan</h3>
+    <div class="mb-3 d-flex justify-content-between">
+      <input type="text" class="form-control col-4 border-info" placeholder="Tìm Kiếm ..."
+             (input)="searchAllField(element.value)" #element>
+    </div>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Avatar</th>
+        <th scope="col">Tên Tài Khoản</th>
+        <th scope="col">Email</th>
+        <th scope="col">Status</th>
+        <th scope="col" colspan="3" style="text-align: center">Thao tác</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of users|paginate: { itemsPerPage: 5, currentPage: p};index as i">
+        <th scope="row">{{i+1}}</th>
+        <td><img src="{{item.imageAvatarOfUser}}" width="50px"></td>
+        <td>{{item.fullName}}</td>
+        <td>{{item.email}}</td>
+        <td *ngIf="item.status;else elseBlock"><span class="lable lable-active">active</span></td>
+        <ng-template #elseBlock>
+          <td><span class="lable lable-inactive">inactive</span></td>
+        </ng-template>
+        <td class="action"><span><i class="las la-edit"></i></span>Update</td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+

@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="container-fluid mb-3">
+    <button class="btn btn-primary" [routerLink]="['/employee']">Danh sách Nhân viên</button>
+  </div>
+  <div class="container-fluid bg-white p-3">
+    <h3 class="title-component">
+      THÔNG TIN NHÂN VIÊN
+    </h3>
+
+    <table class="table" *ngIf="customer">
+      <thead>
+      <tr>
+        <th scope="col" class="col-4">Thu muc</th>
+        <th scope="col" class="col-8">Noi dung</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">Tên Khách Hàng</th>
+        <td>{{customer.customerName}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Gioi tính</th>
+        <td *ngIf="customer.customerGender; else elseBlock">Nam</td>
+        <ng-template #elseBlock>
+          <td>Nữ</td>
+        </ng-template>
+      </tr>
+      <tr>
+        <th scope="row">Số Cmnd:</th>
+        <td>{{customer.customerIdCard}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Ngày sinh</th>
+        <td>: {{customer.customerBirthday}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Số điện thoại</th>
+        <td>: {{customer.customerPhone}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Địa chỉ</th>
+        <td>{{customer.customerAddress}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Loai Khach Hang</th>
+        <td>{{customer.customerType.customerTypeName}}</td>
+      </tr>
+      <tr>
+      </tbody>
+    </table>
+  </div>
+</div>

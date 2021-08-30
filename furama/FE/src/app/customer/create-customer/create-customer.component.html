@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="container-fluid mb-3">
+    <button class="btn btn-primary" [routerLink]="['/customer']">Danh sach Khach hang</button>
+  </div>
+  <div class="container-fluid bg-white pt-3 pb-3">
+    <div class="d-flex justify-content-between">
+      <h3 class="title-component">THÊM MỚI KHÁCH HÀNG</h3>
+      <button class="btn btn-primary" (click)="resetForm()">Reset Form</button>
+    </div>
+    <form *ngIf="customerForm" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="name">Họ Và Tên:</label>
+          <input type="text" class="form-control border-danger" id="name"
+                 formControlName="customerName"
+                 [ngClass]="{'border-danger':customerForm.get('customerName').hasError('required')
+                 &&customerForm.get('customerName').touched}">
+          <div class="text-danger" *ngFor="let item of validator.customerName">
+            <div *ngIf="customerForm.get('customerName').hasError(item.type)
+              &&customerForm.get('customerName').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="birth">Ngày Sinh:</label>
+          <input type="date" class="form-control" id="birth" formControlName="customerBirthday"
+                 [ngClass]="{'border-danger':customerForm.get('customerBirthday').hasError('required')
+                 &&customerForm.get('customerBirthday').touched}">
+          <div class="text-danger" *ngFor="let item of validator.customerBirthday">
+            <div *ngIf="customerForm.get('customerBirthday').hasError(item.type)
+            &&customerForm.get('customerBirthday').touched">{{item.msg}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="position">Loaị khách hàng</label>
+          <select id="position" class="form-control" formControlName="customerType"
+                  [ngClass]="{'border-danger':customerForm.get('customerType').hasError('required')
+                 &&customerForm.get('customerType').touched}">
+            <option selected [value]="">Choose...</option>
+            <option *ngFor="let item of custumerTypes" [ngValue]="item">{{item.customerTypeName}}</option>
+          </select>
+          <div class="text-danger" *ngFor="let item of validator.customerType">
+            <div *ngIf="customerForm.get('customerType').hasError(item.type)
+            &&customerForm.get('customerType').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="address">Địa Chỉ</label>
+          <input type="text" class="form-control" id="address" formControlName="customerAddress"
+                 [ngClass]="{'border-danger':customerForm.get('customerAddress').hasError('required')
+                 &&customerForm.get('customerAddress').touched}">
+          <div class="text-danger" *ngFor="let item of validator.customerAddress">
+            <div *ngIf="customerForm.get('customerAddress').hasError(item.type)
+          &&customerForm.get('customerAddress').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="salary">Email</label>
+          <input type="text" class="form-control" id="salary" formControlName="customerEmail"
+                 [ngClass]="{'border-danger':customerForm.get('customerEmail').hasError('required')
+                 &&customerForm.get('customerEmail').touched}">
+          <div class="text-danger" *ngFor="let item of validator.customerEmail">
+            <div
+              *ngIf="customerForm.get('customerEmail').hasError(item.type)
+              &&customerForm.get('customerEmail').touched">{{item.msg}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="phone">Số Điện Thoại</label>
+          <input type="text" class="form-control" id="phone" formControlName="customerPhone"
+                 [ngClass]="{'border-danger':customerForm.get('customerPhone').hasError('required')
+                 &&customerForm.get('customerPhone').touched}">
+          <div class="text-danger" *ngFor="let item of validator.customerPhone">
+            <div
+              *ngIf="customerForm.get('customerPhone').hasError(item.type)
+              &&customerForm.get('customerPhone').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Số CMND</label>
+          <input type="text" class="form-control" id="email" formControlName="customerIdCard"
+                 [ngClass]="{'border-danger':customerForm.get('customerIdCard').hasError('required')
+                 &&customerForm.get('customerIdCard').touched}">
+          <div class="text-danger" *ngFor="let item of validator.customerIdCard">
+            <div
+              *ngIf="customerForm.get('customerIdCard').hasError(item.type)
+              &&customerForm.get('customerIdCard').touched">{{item.msg}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="customerGender" id="male" [value]=true
+                 formControlName="customerGender">
+          <label class="form-check-label" for="male">Nam</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="customerGender" id="female" [value]=false
+                 formControlName="customerGender">
+          <label class="form-check-label" for="female">Nu</label>
+        </div>
+        <div class="text-danger" *ngFor="let item of validator.customerGender">
+          <div *ngIf="customerForm.get('customerGender').hasError(item.type)
+                    &&customerForm.get('customerGender').touched">{{item.msg}}</div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Thêm mới</button>
+    </form>
+  </div>
+</div>
+

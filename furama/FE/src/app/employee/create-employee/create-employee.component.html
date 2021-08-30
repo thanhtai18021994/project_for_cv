@@ -1,0 +1,129 @@
+<div class="container-fluid">
+  <div class="container-fluid mb-3">
+    <button class="btn btn-primary" [routerLink]="['/employee']">Danh sach Khach hang</button>
+  </div>
+  <div class="container-fluid bg-white pt-3 pb-3">
+    <div class="d-flex justify-content-between">
+      <h3 class="title-component">THÊM MỚI NHÂN VIÊN</h3>
+      <button class="btn btn-primary" (click)="resetForm()">Reset Form</button>
+    </div>
+
+    <form *ngIf="employeeForm" [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="name">Họ Và Tên:</label>
+          <input type="text" class="form-control border-danger" id="name"
+                 formControlName="employeeName"
+                 [ngClass]="{'border-danger':employeeForm.get('employeeName').hasError('required')
+                 &&employeeForm.get('employeeName').touched}">
+          <div class="text-danger" *ngFor="let item of validator.employeeName">
+            <div *ngIf="employeeForm.get('employeeName').hasError(item.type)&&employeeForm.get('employeeName').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="birth">Ngày Sinh:</label>
+          <input type="date" class="form-control" id="birth" formControlName="employeeBirthday"
+                 [ngClass]="{'border-danger':employeeForm.get('employeeBirthday').hasError('required')
+                 &&employeeForm.get('employeeBirthday').touched}">
+          <div class="text-danger" *ngFor="let item of validator.employeeBirthday">
+            <div *ngIf="employeeForm.get('employeeBirthday').hasError(item.type)&&employeeForm.get('employeeBirthday').touched">{{item.msg}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="position">Chức Vụ</label>
+          <select id="position" class="form-control" formControlName="position"
+                  [ngClass]="{'border-danger':employeeForm.get('position').hasError('required')
+                 &&employeeForm.get('position').touched}">
+            <option selected [value]="">Choose...</option>
+            <option *ngFor="let item of positions" [ngValue]="item">{{item.positionName}}</option>
+          </select>
+          <div class="text-danger" *ngFor="let item of validator.position">
+            <div *ngIf="employeeForm.get('position').hasError(item.type)&&employeeForm.get('position').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="education">Bằng cấp</label>
+          <select id="education" class="form-control" formControlName="educationDegree"
+                  [ngClass]="{'border-danger':employeeForm.get('educationDegree').hasError('required')
+                 &&employeeForm.get('educationDegree').touched}">
+            <option selected [value]="">Choose...</option>
+            <option *ngFor="let item of educations" [ngValue]="item">{{item.educationName}}</option>
+          </select>
+          <div class="text-danger" *ngFor="let item of validator.educationDegree">
+            <div *ngIf="employeeForm.get('educationDegree').hasError(item.type)&&employeeForm.get('educationDegree').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="salary">Lương</label>
+          <input type="text" class="form-control" id="salary" formControlName="employeeSalary"
+                 [ngClass]="{'border-danger':employeeForm.get('employeeSalary').hasError('required')
+                 &&employeeForm.get('employeeSalary').touched}">
+          <div class="text-danger" *ngFor="let item of validator.employeeSalary">
+            <div *ngIf="employeeForm.get('employeeSalary').hasError(item.type)&&employeeForm.get('employeeSalary').touched">{{item.msg}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="phone">Số Điện Thoại</label>
+          <input type="text" class="form-control" id="phone" formControlName="employeePhone"
+                 [ngClass]="{'border-danger':employeeForm.get('employeePhone').hasError('required')
+                 &&employeeForm.get('employeePhone').touched}">
+          <div class="text-danger" *ngFor="let item of validator.employeePhone">
+            <div *ngIf="employeeForm.get('employeePhone').hasError(item.type)&&employeeForm.get('employeePhone').touched">{{item.msg}}</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" formControlName="employeeEmail"
+                 [ngClass]="{'border-danger':employeeForm.get('employeeEmail').hasError('required')
+                 &&employeeForm.get('employeeEmail').touched}">
+          <div class="text-danger" *ngFor="let item of validator.employeeEmail">
+            <div *ngIf="employeeForm.get('employeeEmail').hasError(item.type)&&employeeForm.get('employeeEmail').touched">{{item.msg}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address">Địa Chỉ</label>
+        <input type="text" class="form-control" id="address" formControlName="employeeAddress"
+               [ngClass]="{'border-danger':employeeForm.get('employeeAddress').hasError('required')
+                 &&employeeForm.get('employeeAddress').touched}">
+        <div class="text-danger" *ngFor="let item of validator.employeeAddress">
+          <div *ngIf="employeeForm.get('employeeAddress').hasError(item.type)
+          &&employeeForm.get('employeeAddress').touched">{{item.msg}}</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="idCard">Số Cmnd:</label>
+          <input type="text" class="form-control" id="idCard" formControlName="employeeIdCard"
+                 [ngClass]="{'border-danger':employeeForm.get('employeeIdCard').hasError('required')
+                 &&employeeForm.get('employeeIdCard').touched}">
+          <div class="text-danger" *ngFor="let item of validator.employeeIdCard">
+            <div *ngIf="employeeForm.get('employeeIdCard').hasError(item.type)
+            &&employeeForm.get('employeeIdCard').touched">{{item.msg}}</div>
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputState">Bộ Phận</label>
+          <select id="inputState" class="form-control" formControlName="division"
+                  [ngClass]="{'border-danger':employeeForm.get('division').hasError('required')
+                 &&employeeForm.get('division').touched}">
+            <option selected [value]="">Choose...</option>
+            <option *ngFor="let item of departments" [ngValue]="item">{{item.divisionName}}</option>
+          </select>
+          <div class="text-danger" *ngFor="let item of validator.division">
+            <div *ngIf="employeeForm.get('division')
+            .hasError(item.type)&&employeeForm.get('division').touched">{{item.msg}}</div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Thêm mới</button>
+    </form>
+  </div>
+</div>
