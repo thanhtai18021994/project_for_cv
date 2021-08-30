@@ -1,0 +1,142 @@
+:root {
+  --white-color: #ffff;
+  --black-color: black;
+  --text-color: #3333;
+  --star-gold-color: #ffce3e;
+  --label-color: #ff2600;
+  --primary-color: #05f2f2;
+  --header-height: 120px;
+  --header-navbar: 34px;
+  --header-with-search: calc(var(--header-height) - var(--header-navbar));
+  --first-color: #48038c;
+  --second-color: #6c1ed9;
+  --bg-header-color: #0D8DFF;
+  --text-header: #F2F2F2;
+  --main-color: #04aa6d;
+  --color-dark: #1D2231;
+  --text-grey: #8390A2;
+  --bg-clolor:#ac41f2
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: 'Roboto', sans-serif;
+}
+router-outlet{
+  width: 100%;
+}
+app-list-computer{
+  width: 100%;
+}
+.app {
+  background-color: #0b0340;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*@keyframes growth {*/
+/*    form {*/
+/*        transform: scale(--growth-from);*/
+/*    }*/
+/*    to {*/
+/*        transform: scale(--growth-to);*/
+/*    }*/
+/*}*/
+
+
+/* modal css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  animation: fadeIn linear 400ms;
+  display: block!important;
+}
+
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.modal__body {
+  --growth-from: 0.7;
+  --growth-to: 1;
+  position: relative;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: fit-content;
+  animation: growth linear 0.1s;
+}
+
+
+/* button style */
+
+.btn {
+  min-width: 142px;
+  height: 34px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.6rem!important;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn--normal{
+  font-size: 1.6rem;
+  color: #222222;
+  text-transform: uppercase;
+}
+.btn.btn--normal :hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn.btn__primary {
+  background-color: var(--label-color);
+  color: #fff;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+.btn.btn__disabled {
+  color: #949494;
+  background-color: #c3c3c3;
+}
+

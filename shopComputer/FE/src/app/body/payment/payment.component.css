@@ -1,0 +1,206 @@
+.app {
+  width: 45%;
+  margin: 20px auto 0;
+}
+.app-directive{
+  display: flex;
+  justify-content: space-between;
+}
+.app-directive>span:first-child{
+  font-size: 15px;
+  color: #304ffe;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.app-directive>span:last-child{
+  font-size: 15px;
+  color: #333;
+  font-weight: 400;
+}
+
+.app__content{
+  padding-top: 20px;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px 2px #ccc;
+}
+
+.app__content-product{
+  margin-top: 12px;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 30px 30px;
+}
+
+.app__content-product-infor{
+  display: flex;
+  flex: 2;
+}
+
+.product__infor-description h4{
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.product__infor-img{
+  width: 120px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.delete-icon{
+  position: absolute;
+  top: 90%;
+  left: 20px;
+  color: #666;
+  z-index: 2;
+  font-size: 12px;
+}
+.product__infor-img img{
+  width: 100%;
+  display: block;
+}
+.app__content-product-price{
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.app__content-product-price span:first-child{
+font-size: 14px;
+  display: block;
+  color: #ff3300;
+}
+
+.app__content-product-price span:last-child{
+  font-size: 14px;
+  display: block;
+  color: #666;
+  text-decoration: line-through;
+}
+.coutn__bill{
+  padding: 10px 30px;
+  border-bottom: 1px solid #ccc;
+}
+.provisional{
+  display: flex;
+}
+.provisional span:first-child{
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  display: block;
+  flex: 1;
+}
+.provisional span:last-child{
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  display: block;
+  text-align: right;
+  flex: 1;
+}
+.code-discount{
+  font-weight: 400;
+  color: #288ad6;
+  font-size: 14px;
+}
+.code-discount i{
+  line-height: 20px;
+  padding-right: 4px;
+}
+.total-bill span:first-child{
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  flex: 1;
+}
+.total-bill{
+  display: flex;
+  justify-content: space-between;
+}
+.total-bill span:last-child{
+  font-size: 14px;
+  font-weight: 600;
+  color: #ff3300;
+  display: block;
+  flex: 1;
+  text-align: right;
+}
+.infor-customer{
+  padding: 10px 30px;
+  border-bottom: 1px solid #ccc;
+}
+.infor-customer p{
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+.infor-customer h4{
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.delivery-way{
+  margin-top: 8px;
+}
+.delivery-way label{
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.required-part{
+  padding: 10px 30px;
+  border-bottom: 1px solid #ccc;
+}
+.required-part-input {
+  height: 35px;
+  padding: 0 12px;
+  font-size: 14px;
+}
+.required-part-group{
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+  margin-top: 12px;
+  position: relative;
+}
+.required-part-group input{
+  position: absolute;
+  font-size: 25px;
+  display: block;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+.required-part-group label{
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+  display: block;
+  padding-left: 25px;
+  height: 25px;
+  margin: 0;
+}
+.submit-part{
+  margin:40px 30px 20px;
+  padding-bottom: 20px;
+}
+.submit-part button{
+  background-color:#f79429;
+  padding: 15px 0;
+  text-align: center;
+  border: none;
+  outline: none;
+  width: 100%;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-top: 12px;
+}

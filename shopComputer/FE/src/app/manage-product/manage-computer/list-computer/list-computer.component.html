@@ -1,0 +1,49 @@
+<div class="container">
+  <h2>Dánh sách máy tính</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Tên sản phẩm</th>
+        <th>Giá nhập kho</th>
+        <th>Giá niêm yết</th>
+        <th>Giảm giá</th>
+        <th>Nhập kho</th>
+        <th>Danh mục</th>
+        <th>Loại máy tính</th>
+        <th>CPU</th>
+        <th>RAM</th>
+        <th>Ổ cứng</th>
+        <th>Card đồ họa</th>
+        <th>Màn hình</th>
+        <th nowrap>Hệ điều hành</th>
+        <th nowrap>Tính năng</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of computerList,index as i">
+        <td>{{i}}</td>
+        <td>{{item.nameProduct}}</td>
+        <td>{{item.importPrice}}</td>
+        <td>{{item.listedPrice}}</td>
+        <td>{{item.discount}}</td>
+        <td>{{item.warehouse}}</td>
+        <td>{{item.category.nameCategory}}</td>
+        <td>{{item.typeComputer.name}}</td>
+        <td>{{item.cpu}}</td>
+        <td>{{item.ram}}</td>
+        <td>{{item.hardDrive}}</td>
+        <td>{{item.graphicCard}}</td>
+        <td>{{item.screen}}</td>
+        <td>{{item.operatingSystem}}</td>
+        <td>
+          <ng-container *ngFor="let row of item.featureProductProducts">
+            {{row.featureLaptop.name}}<br>
+          </ng-container>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

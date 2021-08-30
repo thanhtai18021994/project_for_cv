@@ -1,0 +1,43 @@
+<!-- modal css -->
+<div class="modal">
+  <div class="modal__overlay"></div>
+  <div class="modal__body">
+    <div class="authenticate-form" id="authenticate-form_sign">
+      <div class="authenticate-form__container">
+        <div class="authenticate-form__header">
+          <h3 class="authenticate-form__heading">Đăng Nhập</h3>
+          <span class="authenticate-form__switch-btn">Đăng Ký</span>
+        </div>
+        <div class="authenticate-form_form">
+          <div class="authenticate-form__group">
+            <input type="text" class="authenticate-form__input" placeholder="Nhap email" #email>
+          </div>
+          <div class="authenticate-form__group">
+            <input type="password" class="authenticate-form__input" placeholder="Nhap mật khẩu" #password>
+          </div>
+        </div>
+        <div class="authenticate-form__controler">
+          <button class="btn authenticate-form__controler-back btn--normalbtn--normal" [routerLink]="['/client']">TRỞ LẠI</button>
+          <button class="btn btn__primary" (click)="onLogin(email.value,password.value)">ĐĂNG NHẬP</button>
+        </div>
+        <div class="authenticate-form_aside">
+          <div class="authenticate-form_aside-help">
+            <a href="" class="authenticate-form_aside-link">Quên Mật khẩu</a>
+            <span class="authenticate-form_aside-help-separate"></span>
+            <a href="" class="authenticate-form_aside-link authenticate-form_aside-link-primary-color">Cần trợ
+              giúp</a>
+          </div>
+        </div>
+      </div>
+      <div class="authenticate-form__socials">
+        <a href="" class="authenticate-form__socials-facebook btn btn--with-icon ">
+          <i class="authenticate-form__socials-icon fab fa-facebook"></i> Kết Nối facebook
+        </a>
+        <a href="" class="authenticate-form__socials-google btn btn--with-icon">
+          <i class="authenticate-form__socials-icon fab fa-google"></i> Kết Nối Google
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,19 @@
+.btn{
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 1rem 1.5rem;
+  box-sizing: content-box;
+  height: fit-content;
+}
+
+.authenticate-form__group{
+  margin-top: 1.5rem;
+}
+
+.btn--with-icon{
+  background-color: #1877f2;
+  color: #fff;
+  font-size: 1.6rem;
+}
+

@@ -1,0 +1,362 @@
+<!--<app-filter (listComputer)="onGetListComputer($event)" ></app-filter>-->
+<div class="row">
+  <ul class="filter-list">
+    <li class="filter__item">
+      <span><span><i class="fas fa-filter"></i></span>Bộ lọc</span>
+    </li>
+    <li class="filter__item">
+      <span (click)="changeStatus()">Hãng <span><i class="fas fa-chevron-down"></i></span></span>
+      <div class="filter-table" [ngStyle]="{'display':isBoolean===true?'none':'block'}">
+        <div class="category-filter-list">
+          <div class="category-image" *ngFor="let category of categories" (click)="numberProduct(category.idCategory)">
+            <img src="/assets/image/logo/{{category.image}}">
+          </div>
+          <span></span>
+        </div>
+        <div class="filter-control">
+          <button class="btn btn-primary" (click)="searchCategory()" >Xem {{numberCurrentProduct===0?'':numberCurrentProduct}} sản phẩm</button>
+          <button class="btn btn-danger" (click)="changeStatus()">Hủy bỏ</button>
+        </div>
+      </div>
+    </li>
+    <li class="filter__item">
+      <span (click)="changeStatusPriceTable()">Giá <span><i class="fas fa-chevron-down"></i></span></span>
+      <div class="filter-table" [ngStyle]="{'display':isBooleanPriceTable===true?'none':'block'}">
+        <div class="price-filter-list" >
+          <div class="price-filter-item" (click)="numberProductByPrice(1)">Dưới 5 triệu</div>
+          <div class="price-filter-item" (click)="numberProductByPrice(2)">Từ 5 triệu đến 10 triệu</div>
+          <div class="price-filter-item" (click)="numberProductByPrice(3)">Từ 10 triệu đến 15 triệu</div>
+          <div class="price-filter-item" (click)="numberProductByPrice(4)">Từ 15 triệu đến 20 triệu</div>
+          <div class="price-filter-item" (click)="numberProductByPrice(5)">Trên 20 triệu</div>
+        </div>
+        <div class="filter-control">
+          <button class="btn btn-primary" (click)="searchByPrice()">Xem {{numberCurrentProduct}}kết quả</button>
+          <button class="btn btn-danger">Hủy bỏ</button>
+        </div>
+      </div>
+    </li>
+    <li class="filter__item">
+      <span>Nhu cầu <span><i class="fas fa-chevron-down"></i></span></span>
+    </li>
+    <li class="filter__item">
+      <span>Kích thước man hình <span><i class="fas fa-chevron-down"></i></span></span>
+    </li>
+    <li class="filter__item">
+      <span> CPU <span><i class="fas fa-chevron-down"></i></span></span>
+    </li>
+    <li class="filter__item">
+      <span>RAM <span><i class="fas fa-chevron-down"></i></span></span>
+    </li>
+    <li class="filter__item">
+      <span> Ổ cứng <span><i class="fas fa-chevron-down"></i></span></span>
+    </li>
+    <li class="filter__item">
+      <span>Card đồ họa <span><i class="fas fa-chevron-down"></i></span></span>
+    </li>
+    <li class="filter__item">
+      <span>Độ phân giải<span><i class="fas fa-chevron-down"></i></span></span>
+    </li>
+  </ul>
+</div>
+
+<div class="row">
+  <div class="col l-12">
+    <div class="row">
+      <div class="col-private grid__col-5" *ngFor="let laptop of laptops" [routerLink]="['/client',{outlets:{'client':['view']}}]">
+        <div class="home__product-card" [routerLink]="['/view']">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">{{laptop.nameProduct}}</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">{{laptop.listedPrice|formatText}} đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> {{laptop.sold}} Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span> <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">{{laptop.discount}}%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-private grid__col-5">
+        <div class="home__product-card">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">[Astore] bàn gấp thông minh có khe cắm ipad và điện thoại màu đen FREE SHIP THEO TIÊU CHUẨN SHOPPEE
+            tiện dụng</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">20.000.000 đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> 33 Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span>  <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">10%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-private grid__col-5">
+        <div class="home__product-card">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">[Astore] bàn gấp thông minh có khe cắm ipad và điện thoại màu đen FREE SHIP THEO TIÊU CHUẨN SHOPPEE
+            tiện dụng</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">20.000.000 đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> 33 Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span>  <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">10%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-private grid__col-5">
+        <div class="home__product-card">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">[Astore] bàn gấp thông minh có khe cắm ipad và điện thoại màu đen FREE SHIP THEO TIÊU CHUẨN SHOPPEE
+            tiện dụng</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">20.000.000 đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> 33 Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span>  <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">10%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-private grid__col-5">
+        <div class="home__product-card">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">[Astore] bàn gấp thông minh có khe cắm ipad và điện thoại màu đen FREE SHIP THEO TIÊU CHUẨN SHOPPEE
+            tiện dụng</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">20.000.000 đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> 33 Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span>  <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">10%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-private grid__col-5">
+        <div class="home__product-card">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">[Astore] bàn gấp thông minh có khe cắm ipad và điện thoại màu đen FREE SHIP THEO TIÊU CHUẨN SHOPPEE
+            tiện dụng</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">20.000.000 đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> 33 Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span>  <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">10%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-private grid__col-5">
+        <div class="home__product-card">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">[Astore] bàn gấp thông minh có khe cắm ipad và điện thoại màu đen FREE SHIP THEO TIÊU CHUẨN SHOPPEE
+            tiện dụng</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">20.000.000 đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> 33 Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span>  <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">10%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-private grid__col-5">
+        <div class="home__product-card">
+          <div class="home__product-card-image" style="background-image: url(assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
+          <h5 class="home__product-name">[Astore] bàn gấp thông minh có khe cắm ipad và điện thoại màu đen FREE SHIP THEO TIÊU CHUẨN SHOPPEE
+            tiện dụng</h5>
+          <div class="home__product-price">
+            <span class="home__product-old-price">20.000.000 đ</span>
+            <span class="home__product-current-price">19.400.000 đ</span>
+          </div>
+          <div class="home__product-action">
+                <span class="action-like">
+                  <i class="far fa-heart"></i>
+                  <!--                  <i class="fas fa-heart"></i>-->
+                </span>
+            <div class="action-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="action-sold"> 33 Đã bán </span>
+          </div>
+          <div class="home__product-card-origin">
+            <span class="product-brand">Whoo</span>
+            <span class="product-origin-name">Japan</span>
+          </div>
+          <div class="home__product-favorite">
+              <span>  <i class="fas fa-check"></i>
+                Yêu thích</span>
+          </div>
+          <div class="home__product-sale-off">
+            <span class="sale-off-percent">10%</span><br>
+            <span class="sale-off-lable">Giảm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
