@@ -1,0 +1,1 @@
+SELECT * FROM shopcomputer.type_computer;
