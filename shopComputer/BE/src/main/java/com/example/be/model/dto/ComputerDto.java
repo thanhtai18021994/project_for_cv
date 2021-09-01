@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -39,5 +40,5 @@ public class ComputerDto {
     private String releaseTime;
     private boolean enable;
     private String mainImage;
-    private Set<ImageDetailOfComputer> imageDetailOfComputers;
+    private List<String> imageDetailOfComputers;
 }

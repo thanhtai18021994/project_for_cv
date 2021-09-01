@@ -24,7 +24,6 @@ import {CreateComputerComponent} from './manage-product/manage-computer/create-c
 import {ReactiveFormsModule} from '@angular/forms';
 import {ManageModule} from './manage-product/manage.module';
 import {HttpClientModule} from '@angular/common/http';
-import {SharedComponent} from './shared/shared.component';
 import {ManageRoutingModule} from './manage-product/manage-routing.module';
 import {PcAioServerComponent} from './body/pc-aio-server/pc-aio-server.component';
 import {MouseKeysComponent} from './body/mouse-keys/mouse-keys.component';
@@ -32,7 +31,6 @@ import {MonitorComponent} from './body/monitor/monitor.component';
 import {AccessoriesComponent} from './body/accessories/accessories.component';
 import {ListComputerComponent} from './manage-product/manage-computer/list-computer/list-computer.component';
 import {FormatTextPipe} from './customPipe/format-text.pipe';
-import {MyGuardGuard} from './service/my-guard.guard';
 import {RegistrationComponent} from './registration/registration.component';
 import {LoginComponent} from './login/login.component';
 
@@ -121,7 +119,6 @@ const routes: Routes = [
     ManageProductComponent,
     ManageComputerComponent,
     CreateComputerComponent,
-    SharedComponent,
     FormatTextPipe,
     RegistrationComponent,
     LoginComponent
@@ -137,7 +134,6 @@ const routes: Routes = [
     ManageRoutingModule
   ],
   providers: [
-    MyGuardGuard
   ],
   bootstrap: [AppComponent]
 })

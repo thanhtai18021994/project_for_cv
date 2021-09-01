@@ -2,6 +2,7 @@ package com.example.be.controller;
 
 import com.example.be.model.dto.ComputerDto;
 import com.example.be.model.entity.Computer;
+import com.example.be.model.entity.ImageDetailOfComputer;
 import com.example.be.model.service.computer.IComputerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -12,8 +13,10 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -42,7 +45,17 @@ public class ComputerController {
         }
         Computer computer=new Computer();
         BeanUtils.copyProperties(computerDto,computer);
+        List<String> images=computerDto.getImageDetailOfComputers();
         Computer computer1=computerService.save(computer);
+        Set<ImageDetailOfComputer> imageDetails=new HashSet<>();
+        for (int i = 0; i < images.size(); i++) {
+            ImageDetailOfComputer imageDetailOfComputer=new ImageDetailOfComputer();
+            imageDetailOfComputer.setComputer(computer1);
+            imageDetailOfComputer.setUrl(images.get(i));
+            imageDetails.add(imageDetailOfComputer);
+            computer1.setImageDetailOfComputers(imageDetails);
+        }
+        computerService.save(computer1);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
@@ -58,7 +71,17 @@ public class ComputerController {
         Computer computer1=new Computer();
         BeanUtils.copyProperties(computerDto,computer1);
         computer1.setComputerId(id);
-        computerService.save(computer1);
+        Computer computer2=computerService.save(computer1);
+        List<String> images=computerDto.getImageDetailOfComputers();
+        Set<ImageDetailOfComputer> imageDetails=new HashSet<>();
+        for (int i = 0; i < images.size(); i++) {
+            ImageDetailOfComputer imageDetailOfComputer=new ImageDetailOfComputer();
+            imageDetailOfComputer.setComputer(computer1);
+            imageDetailOfComputer.setUrl(images.get(i));
+            imageDetails.add(imageDetailOfComputer);
+            computer2.setImageDetailOfComputers(imageDetails);
+        }
+        computerService.save(computer2);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @DeleteMapping("/delete/{id}")

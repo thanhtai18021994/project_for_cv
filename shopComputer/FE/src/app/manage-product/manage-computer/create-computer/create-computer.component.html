@@ -10,13 +10,13 @@
             <div class="form-group col-md-12">
               <label for="exampleFormControlInput1">Tên sản phẩm (*):</label>
               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Dell precision ..."
-                     formControlName="nameProduct">
-              <div  class="text-danger" *ngFor="let validation of validation_msg.nameProduct">
+                     formControlName="computerName">
+              <div  class="text-danger" *ngFor="let validation of validation_msg.computerName">
                 <div class="error-massage"
-                     *ngIf="computerForm.get('nameProduct').hasError(validation.type)&&(computerForm.get('nameProduct').dirty||computerForm.get('nameProduct').touched)">
+                     *ngIf="computerForm.get('computerName').hasError(validation.type)
+                     &&(computerForm.get('computerName').dirty||computerForm.get('computerName').touched)">
                   {{validation.message}}
                 </div>
-                <div *ngIf="computerError?.nameProduct">{{computerError.nameProduct}}</div>
               </div>
 
             </div>
@@ -27,7 +27,8 @@
               <input type="text" class="form-control" id="ram" formControlName="ram">
               <div class="text-danger" *ngFor="let validation of validation_msg.ram">
                 <div class="error-massage"
-                     *ngIf="computerForm.get('ram').hasError(validation.type)&&(computerForm.get('ram').dirty||computerForm.get('ram').touched)">
+                     *ngIf="computerForm.get('ram').hasError(validation.type)
+                     &&(computerForm.get('ram').dirty||computerForm.get('ram').touched)">
                   {{validation.message}}
                 </div>
               </div>

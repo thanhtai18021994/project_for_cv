@@ -8,14 +8,14 @@
   --header-height: 120px;
   --header-navbar: 34px;
   --header-with-search: calc(var(--header-height) - var(--header-navbar));
-  --first-color: #48038c;
-  --second-color: #6c1ed9;
-  --bg-header-color: #0D8DFF;
+  --first-color: #fff;
+  --second-color: #282828;
+  --bg-header-color: #181D26;
   --text-header: #F2F2F2;
   --main-color: #04aa6d;
-  --color-dark: #1D2231;
+  --color-dark: #f0f0f0;
   --text-grey: #8390A2;
-  --bg-clolor:#ac41f2
+  --bg-clolor:#fff;
 }
 
 * {

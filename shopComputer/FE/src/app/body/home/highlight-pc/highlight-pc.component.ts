@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ComputerService} from '../../../service/computer.service';
 
 @Component({
   selector: 'app-highlight-pc',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HighlightPcComponent implements OnInit {
 
-  constructor() { }
+  constructor(private computerService:ComputerService) { }
 
   ngOnInit(): void {
   }

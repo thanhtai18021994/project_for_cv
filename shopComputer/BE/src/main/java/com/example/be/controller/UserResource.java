@@ -33,7 +33,6 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
-
 public class UserResource {
 
     @Autowired

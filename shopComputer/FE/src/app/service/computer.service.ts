@@ -1,42 +1,27 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../environments/environment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Computer} from '../model/computer';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ComputerDto} from '../model/computerDto';
-
-const URL=environment.url;
-const httpOptions = {
-  headers: new HttpHeaders(
-    {'Content-Type': 'application/json'})
-};
+import {Computer} from '../model/computer.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class ComputerService {
-  constructor(private http: HttpClient) { }
-  public findAll():Observable<Computer[]>{
-    return this.http.get<Computer[]>(URL+"/listComputer")
+  private readonly URL="http://localhost:8080/api/computer"
+  constructor(private http:HttpClient) { }
+  public getAll():Observable<Computer[]>{
+    return this.http.get<Computer[]>(`${this.URL}`);
   }
-
-  createComputer(computer:ComputerDto):Observable<Computer>{
-    console.log("hello");
-    return  this.http.post<Computer>(URL,computer,httpOptions);
+  public findById(id:number):Observable<Computer>{
+    return this.http.get<Computer>(`${this.URL}/find/${id}`);
   }
-
-  searchLaptop(id:number):Observable<Computer[]>{
-    return this.http.get<Computer[]>(URL+"/product/search/"+id);
+  public create(computer:Computer):Observable<void>{
+    return this.http.post<void>(`${this.URL}/create`,computer);
   }
-
-  searchComputerByCategory(ids:number[]):Observable<Computer[]>{
-    if (ids.length===0){
-      return this.http.get<Computer[]>(URL+"/product/list-empty")
-    }
-    return this.http.get<Computer[]>(URL+"/product/search-category/"+ids);
+  public update(id:number,computer:Computer):Observable<void>{
+    return this.http.put<void>(`${this.URL}/update/${id}`,computer);
   }
-  searchByPrice(prices:number[]):Observable<Computer[]>{
-    return this.http.get<Computer[]>(URL+"/product/price/"+prices);
+  public delete(id:number):Observable<void>{
+    return this.http.delete<void>(`${this.URL}/delete/${id}`);
   }
 }

@@ -41,11 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/login/**", "/api/token/refresh/**")
                 .permitAll();
         http.authorizeRequests()
-                .antMatchers( "/api/user/**","/api/employee/**","/api/customer/**"
-                        ,"/api/contract/**","/api/division","/api/education","/api/position","/api/customerType/**")
+                .antMatchers( "/api/user/**")
                 .hasAnyAuthority("ROLE_ADMIN","ROLE_MEMBER");
         http.authorizeRequests()
-                .antMatchers( "/api/user/addRole","/api/employee/create","/api/contract/update")
+                .antMatchers( "/api/user/addRole")
                 .hasAnyAuthority("ROLE_ADMIN");
 
         http.authorizeRequests().anyRequest().authenticated();

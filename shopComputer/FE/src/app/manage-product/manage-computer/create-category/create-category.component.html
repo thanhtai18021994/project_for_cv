@@ -1,5 +1,0 @@
-<div class="content-area-create">
-  <input id="choose-file" class="choose-image" type="file" multiple (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg, .pdf" formControlName="imageProduct">
-  <img *ngFor="let item of base64textString"  src={{item}} alt="">
-</div>
-

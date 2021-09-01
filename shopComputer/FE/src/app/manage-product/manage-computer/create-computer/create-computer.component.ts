@@ -1,14 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ComputerService} from '../../../service/computer.service';
-import {FeatureComputer} from '../../../model/featureComputer';
-import {FeatureComputerService} from '../../../service/feature-computer.service';
-import {FeatureProductProductService} from '../../../service/feature-product-product.service';
-import {FeatureProductProduct} from '../../../model/featureProductProduct';
-import {ComputerDto} from '../../../model/computerDto';
-import {CategoryService} from '../../../service/category.service';
-import {Category} from '../../../model/category';
-// import Swal from 'sweetalert2';
+import {TypeComputer} from '../../../model/typeComputer.interface';
+import {Manufacture} from '../../../model/manufacture.interface';
+import {Computer} from '../../../model/computer.interface';
 
 @Component({
   selector: 'app-create-computer',
@@ -17,21 +12,15 @@ import {Category} from '../../../model/category';
 })
 export class CreateComputerComponent implements OnInit {
   computerForm: FormGroup;
-  featureComputers: FeatureComputer[];
-  categories: Category[];
-  computerError: ComputerDto;
+  typeComputers: TypeComputer[];
+  manufacture:Manufacture[];
 
   constructor(private fb: FormBuilder,
-              private computerService: ComputerService,
-              private featureComputerService: FeatureComputerService,
-              private featureProductProduct: FeatureProductProductService,
-              private categoryService: CategoryService) {
+              private computerService: ComputerService) {
   }
 
   ngOnInit(): void {
-    this.getFeatureComputer();
     this.toCreate();
-    this.getCategory();
   }
 
   base64textString = [];
@@ -51,79 +40,75 @@ export class CreateComputerComponent implements OnInit {
   }
 
   validation_msg = {
-    nameProduct: [
+    computerName: [
       {type: 'required', message: 'Vui lòng nhập tên'},
       {type: 'minlength', message: 'Chiều dài phải lớn hơn 40 '}
-    ],
-    importPrice: [
+    ], computerImportPrice: [
       {type: 'required', message: 'Vui lòng nhập trường này'},
       {type: 'min', message: 'Vui lòng nhập số dương'}
-    ],
-    listedPrice: [
+    ], computerSalePrice: [
       {type: 'required', message: 'Vui lòng nhập trường này'},
       {type: 'min', message: 'Vui lòng nhập số dương'}
-    ],
-    discount: [
+    ], computerDiscount: [
       {type: 'required', message: 'Vui lòng nhập trường này'},
       {type: 'min', message: 'Vui lòng nhập số dương'}
-    ],
-    warehouse: [
-      {type: 'required', message: 'Vui lòng nhập trường này'},
-      {type: 'min', message: 'Vui lòng nhập số dương'}
-    ],
-    imageProduct: [
+    ], mainImage: [
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    cpu: [
+    ], cpu: [
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    ram: [
+    ], ram: [
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    hardDrive: [
+    ], hardDrive: [
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    graphicCard: [
+    ], graphicCard: [
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    screen: [
+    ], screen: [
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    operatingSystem: [
+    ], dimensionsWeight:[
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    typeComputerId: [
+    ], connector:[
       {type: 'required', message: 'Vui lòng nhập trường này'}
-    ],
-    featureComputers: [
+    ], design:[
+      {type: 'required', message: 'Vui lòng nhập trường này'}
+    ],releaseTime:[
+      {type: 'required', message: 'Vui lòng nhập trường này'}
+    ], operatingSystem: [
+      {type: 'required', message: 'Vui lòng nhập trường này'}
+    ], pcs: [
+      {type: 'required', message: 'Vui lòng nhập trường này'}
+    ], typeComputer: [
+      {type: 'required', message: 'Vui lòng nhập trường này'}
+    ],manufacture:[
       {type: 'required', message: 'Vui lòng nhập trường này'}
     ]
-
   };
 
   toCreate() {
     this.computerForm = this.fb.group({
-      nameProduct: ['', [Validators.required, Validators.minLength(40)]],
-      importPrice: ['', [Validators.required, Validators.min(0)]],
-      listedPrice: ['', [Validators.required]],
-      discount: ['', Validators.required],
-      warehouse: ['', Validators.required],
-      imageProduct: ['', Validators.required],
+      computerName: ['', [Validators.required, Validators.minLength(40)]],
+      computerImportPrice: ['', [Validators.required, Validators.min(0)]],
+      computerSalePrice: ['', [Validators.required]],
+      computerDiscount: ['', Validators.required],
+      mainImage: ['', Validators.required],
       cpu: ['', [Validators.required]],
       ram: ['', [Validators.required]],
       hardDrive: ['', [Validators.required]],
       graphicCard: ['', Validators.required],
       screen: ['', Validators.required],
       operatingSystem: ['', [Validators.required]],
-      categoryId: [''],
-      typeComputerId: [''],
-      featureComputers: this.fb.array([])
+      dimensionsWeight:['',Validators.required],
+      connector:['',Validators.required],
+      design:['',Validators.required],
+      releaseTime:['',Validators.required],
+      pcs: ['',Validators.required],
+      typeComputer: ['',Validators.required],
+      manufacture: ['',Validators.required]
     });
 
   }
 
   onSubmit() {
-    const computer: ComputerDto = this.computerForm.value;
+    const computer: Computer = this.computerForm.value;
     console.log(computer);
     if (this.computerForm.invalid) {
       Object.keys(this.computerForm.controls).forEach(field => {
@@ -131,7 +116,7 @@ export class CreateComputerComponent implements OnInit {
         control.markAsTouched({onlySelf: true});
       });
     } else {
-      this.computerService.createComputer(computer).subscribe(result => {
+      this.computerService.create(computer).subscribe(result => {
         // this.msgCreateSuccessful();
         this.computerForm.reset();
         this.base64textString = [];
@@ -139,24 +124,6 @@ export class CreateComputerComponent implements OnInit {
     }
   }
 
-  // msgCreateSuccessful() {
-  //   Swal.fire({
-  //     title: 'Tạo mới thành công',
-  //     showClass: {
-  //       popup: 'animate__animated animate__fadeInDown'
-  //     },
-  //     hideClass: {
-  //       popup: 'animate__animated animate__fadeOutUp'
-  //     },
-  //     icon: 'success'
-  //   });
-  // }
-
-  getFeatureComputer() {
-    this.featureComputerService.getAll().subscribe(featureComputers => {
-      this.featureComputers = featureComputers;
-    });
-  }
 
   onCheckChange(event) {
     const formArray: FormArray = this.computerForm.get('featureComputers') as FormArray;
@@ -177,11 +144,5 @@ export class CreateComputerComponent implements OnInit {
         console.log(el);
       }
     }
-  }
-
-  getCategory() {
-    this.categoryService.getCategory().subscribe(categories => {
-      this.categories = categories;
-    });
   }
 }

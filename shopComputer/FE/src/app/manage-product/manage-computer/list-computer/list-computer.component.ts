@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ComputerService} from '../../../service/computer.service';
-import {Computer} from '../../../model/computer';
+import {Computer} from '../../../model/computer.interface';
 
 @Component({
   selector: 'app-list-computer',
@@ -16,7 +16,7 @@ export class ListComputerComponent implements OnInit {
   }
 
   getAll(){
-    this.productService.findAll().subscribe(computers=>{
+    this.productService.getAll().subscribe(computers=>{
       console.log(computers);
       this.computerList=computers;
     })

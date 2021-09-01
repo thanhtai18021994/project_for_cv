@@ -1,13 +1,14 @@
+.header__navbar-item-link{
+  color: #111;
+}
 .header__navbar-item-link:hover{
-  color: #f5dada;
+  color: #222;
 }
 
 .header__navbar-item img{
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   margin-bottom: 4px;
-
 }
 
 

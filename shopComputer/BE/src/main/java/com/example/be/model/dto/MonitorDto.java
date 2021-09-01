@@ -15,7 +15,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class MonitorDto {
-
     private Long monitorId;
     private String monitorName;
     private Double monitorImportPrice;
