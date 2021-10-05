@@ -47,9 +47,9 @@ const routing: Routes = [
     path: 'home',
     component: HomeComponent
   },{
-  path:'account',
-    component:AccountComponent,
-    children:[
+  path: 'account',
+    component: AccountComponent,
+    children: [
       {
         path: '',
         component: ListAccountComponent,

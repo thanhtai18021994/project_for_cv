@@ -1,0 +1,8 @@
+<div class="row nav-list">
+  <div class="style-pr" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['home']}}]}}]" [routerLinkActive]="['active']"> Home</div>
+  <div class="style-pr" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['computer','list']}}]}}]" [routerLinkActive]="['active']"> Computer</div>
+  <div class="style-pr" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['monitor','list']}}]}}]" [routerLinkActive]="['active']">Monitor</div>
+  <div class="style-pr" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['keyboard','list']}}]}}]" [routerLinkActive]="['active']">Keyboard</div>
+  <div class="style-pr" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['mouse','list']}}]}}]" [routerLinkActive]="['active']">Mouse</div>
+</div>
+<router-outlet name="product"></router-outlet>

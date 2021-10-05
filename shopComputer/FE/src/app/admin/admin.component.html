@@ -1,0 +1,51 @@
+<div class="my-app">
+  <input type="checkbox" id="nav-toggle" hidden>
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <h2><span><i class="lab la-accusoft"></i></span> <span>Shopeee</span></h2>
+    </div>
+    <div class="sidebar-menu">
+      <ul class="sidebar-list">
+        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['home']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-user-alt"></i></span> <span>Home</span></a></li>
+        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['employee','list']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-user-alt"></i></span> <span>Nhân Viên</span></a></li>
+        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['product']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-clipboard-list"></i></span><span>Quản lý sản phẩm</span></a></li>
+        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['customer','list']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-clipboard-list"></i></span><span>Khách Hàng</span></a></li>
+        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['revenue']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-money-bill-wave"></i></span><span>Doanh thu</span></a></li>
+        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['statistics']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-receipt"></i></span><span>Thống kê</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="content-area">
+    <div class="header-manager">
+      <h1>
+        <label for="nav-toggle">
+          <span class="las la-bars"></span>
+        </label> Dashboard
+      </h1>
+      <div class="header-content-area">
+        <img src="assets/image/user.png" alt="" width="50px">
+        <div>
+          <h4>Join Doe</h4>
+          <small>Admin</small>
+        </div>
+      </div>
+    </div>
+    <div class="content-area-main">
+<!--      <div class="container">-->
+<!--        <div class="choose-create">-->
+<!--          <label for="choose">Chọn loại sản phẩm thêm mới: </label>-->
+<!--          <select id="choose" (change)="navigateTo($event)">-->
+<!--            <option value="">&#45;&#45;&#45;&#45;Chọn loại sản phẩm&#45;&#45;&#45;&#45;</option>-->
+<!--            <option value="/admin/(admin:create)">Thêm mới máy tính</option>-->
+<!--            <option value="/admin/(admin:create)">Thêm mới màn hình</option>-->
+<!--            <option value="">Thêm mới mouse-keys</option>-->
+<!--            <option value="">Thêm mới thiết bị máy tính</option>-->
+<!--          </select>-->
+<!--          <button type="button" class="btn ">Trở về dánh sách</button>-->
+<!--        </div>-->
+<!--      </div>-->
+      <router-outlet name="admin"></router-outlet>
+    </div>
+  </div>
+</div>
+

@@ -4,6 +4,7 @@ import com.example.be.model.entity.ImageDetailOfComputer;
 import com.example.be.model.entity.Manufacture;
 import com.example.be.model.entity.Pcs;
 import com.example.be.model.entity.TypeComputer;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class ComputerDto {
-
     private Long computerId;
     private String computerName;
     private Double computerImportPrice;

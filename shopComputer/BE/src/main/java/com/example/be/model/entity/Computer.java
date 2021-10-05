@@ -1,5 +1,7 @@
 package com.example.be.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -59,5 +61,6 @@ public class Computer {
     private boolean enable;
     private String mainImage;
     @OneToMany(mappedBy = "computer")
+    @JsonBackReference
     private Set<ImageDetailOfComputer> imageDetailOfComputers;
 }

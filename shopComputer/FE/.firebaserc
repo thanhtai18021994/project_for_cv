@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "image-shop-bb05d": {
+      "hosting": {
+        "shopee": [
+          "image-shop-bb05d"
+        ]
+      }
+    }
+  }
+}

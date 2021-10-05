@@ -23,6 +23,6 @@ public class Pcs {
     @Column(name = "pcs_name")
     private String pcsName;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "pcs")
-    @JsonBackReference
+    @JsonBackReference(value = "computer-pcs")
     Set<Computer> computers;
 }

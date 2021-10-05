@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Computer} from '../model/computer.interface';
 
@@ -12,10 +12,16 @@ export class ComputerService {
   public getAll():Observable<Computer[]>{
     return this.http.get<Computer[]>(`${this.URL}`);
   }
+  public getAllByPaginate(page:number,size:number):Observable<Computer[]>{
+    return this.http.get<Computer[]>(`${this.URL}?page=${page}&size=${size}`);
+  }
   public findById(id:number):Observable<Computer>{
     return this.http.get<Computer>(`${this.URL}/find/${id}`);
   }
   public create(computer:Computer):Observable<void>{
+    // let httpOptions = {
+    //   headers: new HttpHeaders({'Content-Type': ' application/json; charset=utf-8'}),
+    // };
     return this.http.post<void>(`${this.URL}/create`,computer);
   }
   public update(id:number,computer:Computer):Observable<void>{

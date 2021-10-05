@@ -13,6 +13,6 @@ public class TypeComputerService implements ITypeComputerService{
     private final TypeComputerRepo typeComputerRepo;
     @Override
     public List<TypeComputer> findAll() {
-        return null;
+        return typeComputerRepo.findAll();
     }
 }

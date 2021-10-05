@@ -3,108 +3,55 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FooterComponent} from './footer/footer.component';
-import {BodyComponent} from './body/body.component';
-import {HeaderComponent} from './header/header.component';
-import {LaptopComponent} from './body/laptop/laptop.component';
-import {HomeComponent} from './body/home/home.component';
-import {HighlightProductComponent} from './body/home/highlight-product/highlight-product.component';
-import {HighlightMonitorComponent} from './body/home/highlight-monitor/highlight-monitor.component';
-import {HighlightMouseKeysComponent} from './body/home/highlight-mouse-keys/highlight-mouse-keys.component';
-import {HighlightAccessoriesComponent} from './body/home/highlight-accessories/highlight-accessories.component';
-import {HighlightPcComponent} from './body/home/highlight-pc/highlight-pc.component';
-import {ViewProductComponent} from './body/view-product/view-product.component';
-import {NgbdRatingBasicComponent} from './body/view-product/ngbd-rating-basic/ngbd-rating-basic.component';
-import {PaymentComponent} from './body/payment/payment.component';
-import {RouterModule, Routes} from '@angular/router';
-import {BodyModule} from './body/body.module';
-import {ManageProductComponent} from './manage-product/manage-product.component';
-import {ManageComputerComponent} from './manage-product/manage-computer/manage-computer.component';
-import {CreateComputerComponent} from './manage-product/manage-computer/create-computer/create-computer.component';
+import {FooterComponent} from './client/footer/footer.component';
+import {HeaderComponent} from './client/header/header.component';
+import {LaptopComponent} from './client/body/laptop/laptop.component';
+import {HomeComponent} from './client/body/home/home.component';
+import {HighlightProductComponent} from './client/body/home/highlight-product/highlight-product.component';
+import {HighlightMonitorComponent} from './client/body/home/highlight-monitor/highlight-monitor.component';
+import {HighlightMouseKeysComponent} from './client/body/home/highlight-mouse-keys/highlight-mouse-keys.component';
+import {HighlightAccessoriesComponent} from './client/body/home/highlight-accessories/highlight-accessories.component';
+import {HighlightPcComponent} from './client/body/home/highlight-pc/highlight-pc.component';
+import {ViewProductComponent} from './client/body/view-product/view-product.component';
+import {PaymentComponent} from './client/body/payment/payment.component';
+import {CreateComputerComponent} from './admin/product/computer/create-computer/create-computer.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ManageModule} from './manage-product/manage.module';
 import {HttpClientModule} from '@angular/common/http';
-import {ManageRoutingModule} from './manage-product/manage-routing.module';
-import {PcAioServerComponent} from './body/pc-aio-server/pc-aio-server.component';
-import {MouseKeysComponent} from './body/mouse-keys/mouse-keys.component';
-import {MonitorComponent} from './body/monitor/monitor.component';
-import {AccessoriesComponent} from './body/accessories/accessories.component';
-import {ListComputerComponent} from './manage-product/manage-computer/list-computer/list-computer.component';
-import {FormatTextPipe} from './customPipe/format-text.pipe';
-import {RegistrationComponent} from './registration/registration.component';
-import {LoginComponent} from './login/login.component';
 
-const routes: Routes = [
-  {
-    path: 'client',
-    component: BodyComponent,
-    children: [
-      {
-        path: '',
-        component: HomeComponent,
-        outlet: 'client'
-      },
-      {
-        path: 'laptop',
-        component: LaptopComponent,
-        outlet: 'client'
-      },
-      {
-        path: 'pc-aio-server',
-        component: PcAioServerComponent,
-        outlet: 'client'
-      }, {
-        path: 'mouse-key',
-        component: MouseKeysComponent,
-        outlet: 'client'
-      }, {
-        path: 'monitor',
-        component: MonitorComponent,
-        outlet: 'client'
-      }, {
-        path: 'accessories',
-        component: AccessoriesComponent,
-        outlet: 'client'
-      }, {
-        path: 'view',
-        component: ViewProductComponent,
-        outlet: 'client',
-      },
-      {
-        path: 'payment',
-        component: PaymentComponent,
-        outlet: 'client'
-      }
-    ]
-  }, {
-    path: 'admin',
-    component: ManageProductComponent,
-    children: [
-      {
-        path: '',
-        component: ListComputerComponent,
-        outlet: 'admin'
-      },
-      {
-        path: 'create',
-        component: CreateComputerComponent,
-        outlet: 'admin'
-      }
-    ]
-  }, {
-    path: 'register',
-    component: RegistrationComponent
-  }, {
-    path: 'login',
-    component: LoginComponent
-  }
-];
+import {ListComputerComponent} from './admin/product/computer/list-computer/list-computer.component';
+import {FormatTextPipe} from './customPipe/format-text.pipe';
+import {RegistrationComponent} from './client/body/registration/registration.component';
+import {LoginComponent} from './client/body/login/login.component';
+
+
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {UpdateComputerComponent } from './admin/product/computer/update-computer/update-computer.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {AppRoutingModule } from './app-routing.module';
+import {RouterModule} from '@angular/router';
+import { ListMonitorComponent } from './admin/product/monitor/list-monitor/list-monitor.component';
+import { UpdateMonitorComponent } from './admin/product/monitor/update-monitor/update-monitor.component';
+import { HomeProductComponent } from './admin/product/home-product/home-product.component';
+import { AdminComponent } from './admin/admin.component';
+import { HomeAdminComponent } from './admin/home-admin/home-admin.component';
+import {AccessoriesComponent} from './client/body/accessories/accessories.component';
+import { ListEmployeeComponent } from './admin/employee/list-employee/list-employee.component';
+import { UpdateEmployeeComponent } from './admin/employee/update-employee/update-employee.component';
+import { CreateEmployeeComponent } from './admin/employee/create-employee/create-employee.component';
+import {ClientComponent} from './client/client.component';
+import { ListCustomerComponent } from './admin/customer/list-customer/list-customer.component';
+import { CreateCustomerComponent } from './admin/customer/create-customer/create-customer.component';
+import { UpdateCustomerComponent } from './admin/customer/update-customer/update-customer.component';
+import {ProductComponent} from './admin/product/product.component';
+import { PaginationComponent } from './common/pagination/pagination.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    BodyComponent,
     HeaderComponent,
     LaptopComponent,
     HomeComponent,
@@ -114,24 +61,39 @@ const routes: Routes = [
     HighlightAccessoriesComponent,
     HighlightPcComponent,
     ViewProductComponent,
-    NgbdRatingBasicComponent,
     PaymentComponent,
-    ManageProductComponent,
-    ManageComputerComponent,
     CreateComputerComponent,
     FormatTextPipe,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ListComputerComponent,
+    UpdateComputerComponent,
+    ListMonitorComponent,
+    UpdateMonitorComponent,
+    HomeProductComponent,
+    AdminComponent,
+    HomeAdminComponent,
+    AccessoriesComponent,
+    ListEmployeeComponent,
+    UpdateEmployeeComponent,
+    CreateEmployeeComponent,
+    ClientComponent,
+    ListCustomerComponent,
+    CreateCustomerComponent,
+    UpdateCustomerComponent,
+    ProductComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    RouterModule.forRoot(routes),
-    BodyModule,
+    RouterModule,
     ReactiveFormsModule,
-    ManageModule,
     HttpClientModule,
-    ManageRoutingModule
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase_config),
+    NgxPaginationModule,
+    AppRoutingModule
   ],
   providers: [
   ],

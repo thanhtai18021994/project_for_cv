@@ -22,7 +22,7 @@ public class Manufacture {
     private Long manufactureId;
     private String manufactureName;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "manufacture")
-    @JsonBackReference
+    @JsonBackReference(value = "computer-manufacture")
     Set<Computer> computers;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "manufacture")
     @JsonBackReference

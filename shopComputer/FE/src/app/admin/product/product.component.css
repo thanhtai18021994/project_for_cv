@@ -1,0 +1,34 @@
+.style-pr{
+  color: #807b7b;
+  font-size: 16px;
+  padding: 8px 20px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  box-sizing:border-box;
+}
+
+.style-pr::before{
+  content: "";
+  display: block;
+  position: absolute;
+  height: 16px;
+  /*border-right: 2px solid #666666;*/
+  top: 50%;
+  transform: translateY(-50%);
+  right: -2px;
+}
+
+.active{
+  color: #000;
+  background-clip: padding-box;
+  background-color: #fff;
+  border-radius: 12px;
+  border-right: none;
+}
+
+.nav-list{
+  padding: 20px 10px;
+  background-color: #f8f8f8;
+}

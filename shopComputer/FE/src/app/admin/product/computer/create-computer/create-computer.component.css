@@ -1,0 +1,165 @@
+content-area-create {
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.create-computer {
+  display: flex;
+}
+
+.form-input {
+  background-color: #fff;
+  flex: 8;
+}
+
+.form-group label {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  font-size: 1.6rem;
+  padding: 0.4rem 1rem;
+}
+
+.form-img {
+  background-color: white;
+  padding: 2rem;
+  flex: 4;
+}
+
+.display-image {
+  border-radius: 15px;
+  padding-top: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  border: 3px dashed #cccccc;
+  overflow: hidden;
+}
+
+.display-image p {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  z-index: 2;
+  font-size: 20px;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  color: #a5b3ff;
+}
+
+.display-image img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.form-img > input {
+  display: none;
+}
+
+.form-img > label {
+  position: relative;
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 25px;
+  font-size: 1.5rem;
+  color: #222;
+  font-weight: 500;
+  padding: 10px 0;
+  text-align: center;
+  margin: 1rem auto 0;
+  display: block;
+}
+
+.form-check-label {
+  font-size: 1.6rem;
+}
+
+.form-img span {
+  display: block;
+  font-size: 16px;
+  margin: 1rem 0;
+}
+
+.create-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 1.5rem;
+  padding: 2rem 1rem 0;
+  position: relative;
+}
+
+.create-title button {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  font-size: 2.5rem;
+  border: none;
+  outline: none;
+  background-color: #fff;
+}
+
+.form-row .btn {
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.error-massage {
+  font-size: 1.4rem;
+}
+
+.form-type-computer{
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+.form-radio {
+  display: flex;
+  margin-right: 10px;
+  justify-content: start;
+  align-items: center;
+}
+
+.form-radio label {
+  display: block;
+  margin: 0;
+}
+.form-radio input{
+  margin: 0 4px 0;
+  display: block;
+}
+.image-detail {
+  margin-top: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  min-height: 100px;
+  padding: 10px;
+}
+.image-detail img{
+  width: 100%;
+}
+.image-detail-btn input{
+  display: none;
+}
+.image-detail-btn label{
+  font-size: 1.6rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 27px;
+  border: 1px solid #cccccc;
+  padding: 10px 20px;
+  display: block;
+  text-align: center;
+  font-weight: 500;
+}

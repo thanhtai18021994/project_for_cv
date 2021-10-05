@@ -1,0 +1,244 @@
+<div class="content-area-create">
+  <form *ngIf="computerForm" [formGroup]="computerForm" (ngSubmit)="onSubmit()">
+    <div class="create-computer">
+      <div class="form-input">
+        <div class="create-title">Thêm mới Máy tính
+          <button type="reset"><span><i class='bx bx-refresh'></i></span></button>
+        </div>
+        <div class="container">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Hãng máy tính (*):</label>
+              <select class="form-control" formControlName="manufacture">
+                <option value="" disabled>--Chọn hãng máy tính--</option>
+                <option *ngFor="let item of manufactures" [ngValue]="item">
+                  <span>{{item.manufactureName}}</span></option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Loại Máy tính(*):</label>
+              <div class="form-type-computer">
+<!--                <div class="form-radio">-->
+<!--                  <input type="radio" name="pcs" id="laptop" value="1"-->
+<!--                         formControlName="pcs">-->
+<!--                  <label  for="laptop">Laptop</label>-->
+<!--                </div>-->
+<!--                <div class="form-radio">-->
+<!--                  <input type="radio" name="pcs" id="pc" value="2"-->
+<!--                         formControlName="pcs">-->
+<!--                  <label  for="pc">Pc,AIO,Server</label>-->
+<!--                </div>-->
+                <div class="form-radio" *ngFor="let item of pcs">
+                  <input type="radio" name="pcs" id="{{'pc'+item.pcsId}}" [value]="item"
+                         formControlName="pcs">
+                  <label  for="{{'pc'+item.pcsId}}">{{item.pcsName}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="exampleFormControlInput1">Tên sản phẩm (*):</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Dell precision ..."
+                     formControlName="computerName">
+              <div  class="text-danger" *ngFor="let validation of validation_msg.computerName">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('computerName').hasError(validation.type)
+                     &&(computerForm.get('computerName').dirty||computerForm.get('computerName').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="ram">RAM(*):</label>
+              <input type="text" class="form-control" id="ram" formControlName="ram">
+              <div class="text-danger" *ngFor="let validation of validation_msg.ram">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('ram').hasError(validation.type)
+                     &&(computerForm.get('ram').dirty||computerForm.get('ram').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cpu">CPU(*):</label>
+              <input type="text" class="form-control" id="cpu" formControlName="cpu">
+              <div class="text-danger" *ngFor="let validation of validation_msg.cpu">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('cpu').hasError(validation.type)&&(computerForm.get('cpu').dirty||computerForm.get('cpu').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="screen">Màn hình(*):</label>
+              <input type="text" class="form-control" id="screen" formControlName="screen">
+              <div class="text-danger" *ngFor="let validation of validation_msg.screen">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('screen').hasError(validation.type)&&(computerForm.get('screen').dirty||computerForm.get('screen').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="operatingSystem">Hệ điều hành(*):</label>
+              <input type="text" class="form-control"  id="operatingSystem" formControlName="operatingSystem">
+              <div class="text-danger" *ngFor="let validation of validation_msg.operatingSystem">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('operatingSystem').hasError(validation.type)
+                     &&(computerForm.get('ram').dirty||computerForm.get('ram').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="hardDrive">Ổ cứng(*):</label>
+              <input type="text" class="form-control" id="hardDrive" formControlName="hardDrive">
+              <div class="text-danger" *ngFor="let validation of validation_msg.hardDrive">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('hardDrive').hasError(validation.type)
+                     &&(computerForm.get('hardDrive').dirty||computerForm.get('hardDrive').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="graphicCard">Card màn hình(*):</label>
+              <input type="text" class="form-control" id="graphicCard" formControlName="graphicCard">
+              <div class="text-danger" *ngFor="let validation of validation_msg.graphicCard">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('graphicCard').hasError(validation.type)
+                     &&(computerForm.get('graphicCard').dirty||computerForm.get('graphicCard').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="connector">Cổng kết nối(*):</label>
+              <input type="text" class="form-control" id="connector" formControlName="connector">
+              <div class="text-danger" *ngFor="let validation of validation_msg.connector">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('connector').hasError(validation.type)
+                     &&(computerForm.get('connector').dirty||computerForm.get('connector').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="importPrice">Giá Nhập kho(*):</label>
+              <input type="text" class="form-control" id="importPrice" formControlName="computerImportPrice">
+              <div class="text-danger" *ngFor="let validation of validation_msg.computerImportPrice">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('computerImportPrice').hasError(validation.type)
+                     &&(computerForm.get('computerImportPrice').dirty||computerForm.get('computerImportPrice').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="listedPrice">Giá niêm yết(*):</label>
+              <input type="text" class="form-control" id="listedPrice" formControlName="computerSalePrice">
+              <div class="text-danger" *ngFor="let validation of validation_msg.computerSalePrice">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('computerSalePrice').hasError(validation.type)
+                     &&(computerForm.get('computerSalePrice').dirty||computerForm.get('computerSalePrice').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="discount">Giảm giá(*):</label>
+              <input type="text" class="form-control" id="discount" formControlName="computerDiscount">
+              <div class="text-danger" *ngFor="let validation of validation_msg.computerDiscount">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('computerDiscount').hasError(validation.type)
+                     &&(computerForm.get('computerDiscount').dirty||computerForm.get('computerDiscount').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="time">Thời điểm ra mắt(*):</label>
+              <input type="text" class="form-control" id="time" formControlName="releaseTime">
+              <div class="text-danger" *ngFor="let validation of validation_msg.releaseTime">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('releaseTime').hasError(validation.type)
+                     &&(computerForm.get('releaseTime').dirty||computerForm.get('releaseTime').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="weight">Kích thước,trọng lượng(*):</label>
+              <input type="text" class="form-control" id="weight" formControlName="dimensionsWeight">
+              <div class="text-danger" *ngFor="let validation of validation_msg.dimensionsWeight">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('dimensionsWeight').hasError(validation.type)
+                     &&(computerForm.get('dimensionsWeight').dirty||computerForm.get('dimensionsWeight').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="design">Thiết kế(*):</label>
+              <input type="text" class="form-control" id="design" formControlName="design">
+              <div class="text-danger" *ngFor="let validation of validation_msg.design">
+                <div class="error-massage"
+                     *ngIf="computerForm.get('design').hasError(validation.type)
+                     &&(computerForm.get('design').dirty||computerForm.get('design').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Loại máy tính (*):</label>
+              <select class="form-control" formControlName="typeComputer">
+                <option value="" disabled>--Chọn loại máy tính--</option>
+                <option *ngFor="let category of typeComputers" [ngValue]="category">
+                  <span>{{category.typeComputerName}}</span></option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row" style="justify-content: space-between">
+            <button type="submit" class="btn btn-primary">Tạo mới</button>
+            <button type="button" class="btn btn-primary">Hủy bỏ</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-img">
+        <div class="display-image"
+             [ngStyle]="{'background-image': url!='undefined'?
+             url:''}">
+          <img [src]="url">
+          <p [ngStyle]="{'display':url?'block':'none'}">No file choosen, yet</p>
+        </div>
+        <input id="choose-file" class="choose-image" type="file" multiple (change)="onFileSelected($event)"
+               accept=".png, .jpg, .jpeg, .pdf">
+        <label for="choose-file">Chọn Ảnh</label>
+        <div class="image-detail row">
+          <div class="col-3" *ngFor="let item of subImage">
+            <img [src]="item">
+          </div>
+        </div>
+        <div class="image-detail-btn">
+          <input id="choose-image-detail" class="choose-image" type="file" multiple (change)="onMultipleFileSelected($event)"
+                 accept=".png, .jpg, .jpeg, .pdf">
+          <label for="choose-image-detail">Chọn Ảnh Chi tiết</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

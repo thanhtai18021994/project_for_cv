@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatTextPipe implements PipeTransform {
 
   transform(x: number): string {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return new Intl.NumberFormat(`de-DE`,{style:'currency',currency:'VND'}).format(x);
   }
-
 }
