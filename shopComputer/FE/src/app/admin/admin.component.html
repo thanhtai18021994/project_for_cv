@@ -1,51 +1,149 @@
-<div class="my-app">
-  <input type="checkbox" id="nav-toggle" hidden>
-  <div class="sidebar">
-    <div class="sidebar-brand">
-      <h2><span><i class="lab la-accusoft"></i></span> <span>Shopeee</span></h2>
-    </div>
-    <div class="sidebar-menu">
-      <ul class="sidebar-list">
-        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['home']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-user-alt"></i></span> <span>Home</span></a></li>
-        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['employee','list']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-user-alt"></i></span> <span>Nhân Viên</span></a></li>
-        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['product']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-clipboard-list"></i></span><span>Quản lý sản phẩm</span></a></li>
-        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['customer','list']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-clipboard-list"></i></span><span>Khách Hàng</span></a></li>
-        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['revenue']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-money-bill-wave"></i></span><span>Doanh thu</span></a></li>
-        <li class="sidebar-item" [routerLink]="['/admin',{outlets:{'admin':['statistics']}}]" [routerLinkActive]="['active-private']"><a class="sidebar-link"><span><i class="las la-receipt"></i></span><span>Thống kê</span></a></li>
+<div class="app-admin">
+  <div class="control">
+    <div class="control__main">
+      <ul id="control-list">
+        <li class="private-btn" (click)="controlTab(0)"><span><i class="las la-layer-group"></i>Hệ Thống</span></li>
+        <li class="private-btn" (click)="controlTab(1)"><span><i class="las la-cog"></i>Chức Năng</span></li>
+        <li class="private-btn active" (click)="controlTab(2)"><span><i class="las la-sitemap"></i>Quản Lý Thông tin</span></li>
+        <li class="private-btn" (click)="controlTab(3)"><span><i class="las la-search-minus"></i>Tra cứu</span></li>
+        <li class="private-btn" (click)="controlTab(4)"><span><i class="las la-file-invoice"></i>Báo Cáo</span></li>
+        <li class="private-btn" (click)="controlTab(6)"><span><i class="las la-envelope"></i>Hộp Thoại</span></li>
+        <li class="private-btn" (click)="controlTab(5)"><span><i class="lar la-question-circle"></i>Trợ giúp</span></li>
       </ul>
     </div>
-  </div>
-  <div class="content-area">
-    <div class="header-manager">
-      <h1>
-        <label for="nav-toggle">
-          <span class="las la-bars"></span>
-        </label> Dashboard
-      </h1>
-      <div class="header-content-area">
-        <img src="assets/image/user.png" alt="" width="50px">
-        <div>
-          <h4>Join Doe</h4>
-          <small>Admin</small>
-        </div>
+    <div class="control__sub">
+      <div class="control__sub-item" [ngStyle]="{'display': controls[0]?'block':'none'}">
+        <ul>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-shopping-cart"></i><span>Bán hàng</span></li>
+            </ul>
+            <p>Quản lý bán hàng</p>
+          </li>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-truck"></i><span>Nhập kho</span></li>
+            </ul>
+            <p>Quản lý nhập kho</p>
+          </li>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-file-export"></i><span>Xuất kho</span></li>
+            </ul>
+          <p>Quản lý xuất kho</p></li>
+        </ul>
+      </div>
+      <div class="control__sub-item" [ngStyle]="{'display': controls[1]?'block':'none'}">
+        <ul>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-shopping-cart"></i><span>Bán hàng</span></li>
+            </ul>
+            <p>Quản lý bán hàng</p>
+          </li>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-truck"></i><span>Nhập kho</span></li>
+            </ul>
+            <p>Quản lý nhập kho</p>
+          </li>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-file-export"></i><span>Xuất kho</span></li>
+            </ul>
+            <p>Quản lý xuất kho</p></li>
+        </ul>
+      </div>
+      <div class="control__sub-item" [ngStyle]="{'display': controls[2]?'block':'none'}">
+        <ul>
+          <li class="tab-single">
+            <ul>
+              <li  [routerLink]="['/admin',{outlets:{'admin':['product','computer','list']}}]"><i class="las la-laptop"></i>Máy tính</li>
+              <li  [routerLink]="['/admin',{outlets:{'admin':['product','monitor','list']}}]"><i class="las la-desktop"></i>Màn hình</li>
+              <li  [routerLink]="['/admin',{outlets:{'admin':['product','keyboard','list']}}]"><i class="las la-keyboard"></i>Bàn phím</li>
+              <li  [routerLink]="['/admin',{outlets:{'admin':['product','mouse','list']}}]"><i class="las la-mouse"></i>Chuột</li>
+              <li  [routerLink]="['/admin',{outlets:{'admin':['product','accessory','list']}}]"><i class="las la-fan"></i>Thiết bị</li>
+            </ul>
+            <p>Quản lý sản phẩm</p>
+          </li>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-truck"></i><span>Nhà cung cấp</span></li>
+            </ul>
+          <p>Nhà cung cấp</p></li>
+          <li class="tab-single">
+            <ul>
+              <li [routerLink]="['/admin',{outlets:{'admin':['employee','list']}}]"><i class="las la-user-tie"></i><span>Nhân viên</span></li>
+            </ul>
+          <p>Quản lý nhân viên</p></li>
+          <li class="tab-single">
+            <ul>
+              <li [routerLink]="['/admin',{outlets:{'admin':['customer','list']}}]"><i class="las la-users"></i><span>Khách hàng</span></li>
+            </ul>
+            <p>Quản lý khách hàng</p>
+          </li>
+        </ul>
+      </div>
+      <div class="control__sub-item" [ngStyle]="{'display': controls[3]?'block':'none'}">
+        <ul>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-search"></i><span>Tra cứu sản phẩm</span></li>
+            </ul>
+            <p>Tra cứu</p>
+          </li>
+        </ul>
+      </div>
+      <div class="control__sub-item" [ngStyle]="{'display': controls[4]?'block':'none'}">
+        <ul>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-signal"></i><span>Báo cáo</span></li>
+            </ul>
+            <p>Báo cáo</p>
+          </li>
+        </ul>
+      </div>
+      <div class="control__sub-item" [ngStyle]="{'display': controls[5]?'block':'none'}">
+        <ul>
+          <li class="tab-single">
+            <ul>
+              <li><i class="las la-search"></i><span>Tra cứu sản phẩm</span></li>
+            </ul>
+            <p>Tra cứu</p>
+          </li>
+        </ul>
+      </div>
+      <div [routerLink]="['/admin',{outlets:{'admin':['inbox']}}]" class="control__sub-item" [ngStyle]="{'display': controls[6]?'block':'none'}">
+        <ul>
+          <li class="tab-single">
+            <ul>
+              <li [routerLink]="['/admin',{outlets:{'admin':['inbox']}}]" class="control__sub-item"><i class="las la-sms"></i><span>Hộp thư đến</span></li>
+            </ul>
+            <p>Tra cứu</p>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="content-area-main">
-<!--      <div class="container">-->
-<!--        <div class="choose-create">-->
-<!--          <label for="choose">Chọn loại sản phẩm thêm mới: </label>-->
-<!--          <select id="choose" (change)="navigateTo($event)">-->
-<!--            <option value="">&#45;&#45;&#45;&#45;Chọn loại sản phẩm&#45;&#45;&#45;&#45;</option>-->
-<!--            <option value="/admin/(admin:create)">Thêm mới máy tính</option>-->
-<!--            <option value="/admin/(admin:create)">Thêm mới màn hình</option>-->
-<!--            <option value="">Thêm mới mouse-keys</option>-->
-<!--            <option value="">Thêm mới thiết bị máy tính</option>-->
-<!--          </select>-->
-<!--          <button type="button" class="btn ">Trở về dánh sách</button>-->
-<!--        </div>-->
-<!--      </div>-->
-      <router-outlet name="admin"></router-outlet>
+  </div>
+  <div class="content">
+    <div class="sidebar">
+      <h5>Chọn Nhanh</h5>
+      <ul>
+        <li>F2-Bán hàng</li>
+        <li>F3-Nhập kho</li>
+        <li>F4-Xuất hoàn trả</li>
+        <li class="border-bottom">F5-Xuất hủy</li>
+        <li>F6-Tra Cứu nhanh</li>
+        <li>F7-Hệ Thống Báo Cáo</li>
+        <li class="border-bottom">F8-Nhật kí bán hàng</li>
+        <li>F9-Đăng xuất</li>
+      </ul>
+    </div>
+    <div class="content__main">
+      <div class="container-fluid">
+        <router-outlet name="admin"></router-outlet>
+      </div>
     </div>
   </div>
 </div>
-

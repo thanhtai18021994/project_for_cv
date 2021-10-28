@@ -23,6 +23,11 @@ import {ProductComponent} from './admin/product/product.component';
 import {ListMonitorComponent} from './admin/product/monitor/list-monitor/list-monitor.component';
 import {UpdateMonitorComponent} from './admin/product/monitor/update-monitor/update-monitor.component';
 import {HomeProductComponent} from './admin/product/home-product/home-product.component';
+import {UpdateComputerComponent} from './admin/product/computer/update-computer/update-computer.component';
+import {ListCustomerComponent} from './admin/customer/list-customer/list-customer.component';
+import {CreateCustomerComponent} from './admin/customer/create-customer/create-customer.component';
+import {UpdateCustomerComponent} from './admin/customer/update-customer/update-customer.component';
+import {ManageChatRoomComponent} from './admin/adminInbox/manage-chat-room/manage-chat-room.component';
 
 const routes: Routes = [
   {
@@ -56,7 +61,7 @@ const routes: Routes = [
         component: AccessoriesComponent,
         outlet: 'client'
       }, {
-        path: 'view',
+        path: 'view/:id',
         component: ViewProductComponent,
         outlet: 'client',
       },
@@ -89,36 +94,65 @@ const routes: Routes = [
         component: UpdateEmployeeComponent,
         outlet: 'admin'
       }, {
-        path: 'product',
-        component: ProductComponent,
-        outlet: 'admin',
-        children: [
-          {
-            path: 'computer/list',
-            component: ListComputerComponent,
-            outlet: 'product'
-          }, {
-            path: 'computer/create',
-            component: CreateComputerComponent,
-            outlet: 'product'
-          }, {
-            path: 'monitor/list',
-            component: ListMonitorComponent,
-            outlet: 'product'
-          }, {
-            path: 'monitor/create',
-            component: CreateMonitorComponent,
-            outlet: 'product'
-          }, {
-            path: 'monitor/update/:id',
-            component: UpdateMonitorComponent,
-            outlet: 'product'
-          }, {
-            path: 'home',
-            component: HomeProductComponent,
-            outlet: 'product'
-          }
-        ]
+        path: 'customer/list',
+        component: ListCustomerComponent,
+        outlet: 'admin'
+      }, {
+        path: 'customer/create',
+        component: CreateCustomerComponent,
+        outlet: 'admin'
+      }, {
+        path: 'customer/update/:id',
+        component: UpdateCustomerComponent,
+        outlet: 'admin'
+      }, {
+        path: 'product/computer/list',
+        component: ListComputerComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/computer/create',
+        component: CreateComputerComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/computer/update/:id',
+        component: UpdateComputerComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/monitor/list',
+        component: ListMonitorComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/monitor/create',
+        component: CreateMonitorComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/monitor/update/:id',
+        component: UpdateMonitorComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/keyboard/list',
+        component: ListComputerComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/keyboard/create',
+        component: ListComputerComponent,
+        outlet: 'admin'
+      },
+      {
+        path: 'product/keyboard/update/:id',
+        component: ListComputerComponent,
+        outlet: 'admin'
+      }, {
+        path: 'inbox',
+        component: ManageChatRoomComponent,
+        outlet: 'admin'
       }
     ]
   }

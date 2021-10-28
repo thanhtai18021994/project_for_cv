@@ -1,1 +1,205 @@
-<p>update-monitor works!</p>
+<div class="content-area-create">
+  <form *ngIf="monitorForm" [formGroup]="monitorForm" (ngSubmit)="onSubmit()">
+    <div class="create-computer">
+      <div class="form-input">
+        <div class="create-title">Thêm mới Máy tính
+          <button type="reset"><span><i class='bx bx-refresh'></i></span></button>
+        </div>
+        <div class="container">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Hãng máy tính (*):</label>
+              <select class="form-control" formControlName="manufacture">
+                <option value="" disabled>--Chọn hãng màn hình--</option>
+                <option *ngFor="let item of manufacture" [ngValue]="item">
+                  <span>{{item.manufactureName}}</span></option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Loại Máy tính(*):</label>
+              <div class="form-type-computer">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="exampleFormControlInput1">Tên sản phẩm (*):</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Dell precision ..."
+                     formControlName="computerName">
+              <div  class="text-danger" *ngFor="let validation of validation.monitorName">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('computerName').hasError(validation.type)
+                     &&(monitorForm.get('computerName').dirty||monitorForm.get('computerName').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="ram">Giá nhập kho(*):</label>
+              <input type="text" class="form-control" id="ram" formControlName="monitorImportPrice">
+              <div class="text-danger" *ngFor="let validation of validation.monitorImportPrice">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('ram').hasError(validation.type)
+                     &&(monitorForm.get('ram').dirty||monitorForm.get('ram').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="cpu">CPU(*):</label>
+              <input type="text" class="form-control" id="cpu" formControlName="monitorSalePrice">
+              <div class="text-danger" *ngFor="let validation of validation.monitorSalePrice">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('monitorSalePrice').hasError(validation.type)
+                     &&(monitorForm.get('monitorSalePrice').dirty||monitorForm.get('monitorSalePrice').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="monitorDiscount">Giảm giá(*):</label>
+              <input type="text" class="form-control" id="monitorDiscount" formControlName="monitorDiscount">
+              <div class="text-danger" *ngFor="let validation of validation.monitorDiscount">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('monitorDiscount').hasError(validation.type)
+                     &&(monitorForm.get('monitorDiscount').dirty||monitorForm.get('monitorDiscount').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="screenSize">Kích thước màn hình(*):</label>
+              <input type="text" class="form-control" id="screenSize" formControlName="screenSize">
+              <div class="text-danger" *ngFor="let validation of validation.screenSize">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('screenSize').hasError(validation.type)
+                     &&(monitorForm.get('screenSize').dirty||monitorForm.get('screenSize').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="resolution">Độ phân giải(*):</label>
+              <input type="text" class="form-control" id="resolution" formControlName="resolution">
+              <div class="text-danger" *ngFor="let validation of validation.resolution">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('resolution').hasError(validation.type)
+                     &&(monitorForm.get('resolution').dirty||monitorForm.get('resolution').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="resolution">Tỉ lệ màn hình(*):</label>
+              <input type="text" class="form-control" id="screenRatio" formControlName="screenRatio">
+              <div class="text-danger" *ngFor="let validation of validation.screenRatio">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('screenRatio').hasError(validation.type)
+                     &&(monitorForm.get('screenRatio').dirty||monitorForm.get('screenRatio').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="view">Góc nhìn(*):</label>
+              <input type="text" class="form-control" id="view" formControlName="view">
+              <div class="text-danger" *ngFor="let validation of validation.view">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('view').hasError(validation.type)
+                     &&(monitorForm.get('view').dirty||monitorForm.get('view').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="pixelDensity">Điểm ảnh(*):</label>
+              <input type="text" class="form-control" id="pixelDensity" formControlName="pixelDensity">
+              <div class="text-danger" *ngFor="let validation of validation.pixelDensity">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('pixelDensity').hasError(validation.type)
+                     &&(monitorForm.get('pixelDensity').dirty||monitorForm.get('pixelDensity').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="backgroundPanels">Tấm nền(*):</label>
+              <input type="text" class="form-control" id="backgroundPanels" formControlName="backgroundPanels">
+              <div class="text-danger" *ngFor="let validation of validation.backgroundPanels">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('backgroundPanels').hasError(validation.type)
+                     &&(monitorForm.get('backgroundPanels').dirty||monitorForm.get('backgroundPanels').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="pixelSize">Kích cỡ điểm ảnh(*):</label>
+              <input type="text" class="form-control" id="pixelSize" formControlName="pixelSize">
+              <div class="text-danger" *ngFor="let validation of validation.pixelSize">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('pixelSize').hasError(validation.type)
+                     &&(monitorForm.get('pixelSize').dirty||monitorForm.get('pixelSize').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="responsiveness">Độ phản hồi(*):</label>
+              <input type="text" class="form-control" id="responsiveness" formControlName="responsiveness">
+              <div class="text-danger" *ngFor="let validation of validation.responsiveness">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('responsiveness').hasError(validation.type)
+                     &&(monitorForm.get('responsiveness').dirty||monitorForm.get('responsiveness').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="refreshGFrequency">Tần số làm tươi(*):</label>
+              <input type="text" class="form-control" id="refreshGFrequency" formControlName="refreshGFrequency">
+              <div class="text-danger" *ngFor="let validation of validation.refreshGFrequency">
+                <div class="error-massage"
+                     *ngIf="monitorForm.get('refreshGFrequency').hasError(validation.type)
+                     &&(monitorForm.get('refreshGFrequency').dirty||monitorForm.get('refreshGFrequency').touched)">
+                  {{validation.message}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row" style="justify-content: space-between">
+            <button type="submit" class="btn btn-primary">Tạo mới</button>
+            <button type="button" class="btn btn-primary">Hủy bỏ</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-img">
+        <div class="display-image"
+             [ngStyle]="{'background-image': url!='undefined'?
+             url:''}">
+          <img [src]="url">
+          <p [ngStyle]="{'display':url?'block':'none'}">No file choosen, yet</p>
+        </div>
+        <input id="choose-file" class="choose-image" type="file" multiple (change)="onFileSelected($event)"
+               accept=".png, .jpg, .jpeg, .pdf">
+        <label for="choose-file">Chọn Ảnh</label>
+        <div class="image-detail row">
+          <div class="col-3" *ngFor="let item of subImage">
+            <img [src]="item">
+          </div>
+        </div>
+        <div class="image-detail-btn">
+          <input id="choose-image-detail" class="choose-image" type="file" multiple (change)="onMultipleFileSelected($event)"
+                 accept=".png, .jpg, .jpeg, .pdf">
+          <label for="choose-image-detail">Chọn Ảnh Chi tiết</label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+

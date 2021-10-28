@@ -5,3 +5,15 @@
   </section>
 </div>
 <app-footer></app-footer>
+<app-inbox-box [ngStyle]="{'display':displayFlat?'block':'none'}" class="inbox-box" (closeFlat)="closeBox($event)"></app-inbox-box>
+<nav [ngStyle]="{'display':displayFlat?'none':'block'}" class="navbar navbar-light fixed-bottom navbar-expand-md bg-transparent justify-content-center">
+  <div class="container">
+    <ul class="nav navbar-nav w-100 justify-content-end mr-lg-3">
+      <li class="nav-item">
+        <a class="nav-link">
+          <button class="btn chat-button" (click)="controlInbox()">CHAT with shop &nbsp;<i class="fa fa-bell" style="color: #ffffff"></i></button>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -23,5 +23,6 @@ public class ImageDetailOfComputer {
     private String url;
     @ManyToOne()
     @JoinColumn(name = "computer_id")
+    @JsonBackReference
     private Computer computer;
 }

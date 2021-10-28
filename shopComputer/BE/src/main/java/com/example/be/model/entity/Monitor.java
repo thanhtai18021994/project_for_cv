@@ -19,6 +19,9 @@ public class Monitor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "monitor_id")
     private Long monitorId;
+    @Column(name = "monitor_code")
+    private String monitorCode;
+    @Column(name = "monitor_name")
     private String monitorName;
     @Column(name = "monitor_import_price")
     private Double monitorImportPrice;
@@ -33,13 +36,11 @@ public class Monitor {
     private String resolution;
     private String screenRatio;
     private String view;
-    private String pixelDensity;
     private String backgroundPanels;
-    private String pixelSize;
-    private String responsiveness;
-    private String refreshGFrequency;
     @Column(name = "enable")
     private boolean enable;
+    @ManyToOne()
+    private Provider provider;
     private String mainImage;
     @OneToMany(mappedBy = "monitor")
     private Set<ImageDetailMonitor> imageDetailOfMonitor;

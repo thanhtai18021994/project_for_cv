@@ -23,6 +23,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
      @GetMapping("/api/user/principal")
      public ResponseEntity<User> getPrincipal(){
          Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -65,6 +66,7 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         BeanUtils.copyProperties(userDto,user.get());
+        userService.saveUser(user.get());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

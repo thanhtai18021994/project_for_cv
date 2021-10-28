@@ -19,6 +19,8 @@ public class Mouse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "keyboard_id")
     private Long mouseId;
+    @Column(name = "mouse_code")
+    private String mouseCode;
     private String mouseName;
     private Double mouseImportPrice;
     private Double mouseSalePrice;
@@ -31,4 +33,6 @@ public class Mouse {
     private String resolution;
     private String SupportedOperatingSystems;
     private String FrequencyResponse;
+    @ManyToOne()
+    private Provider provider;
 }

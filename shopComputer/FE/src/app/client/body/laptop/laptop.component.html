@@ -61,13 +61,13 @@
 <div class="row">
   <div class="col l-12">
     <div class="row">
-      <div class="col-private grid__col-5">
-        <div class="home__product-card" [routerLink]="['/view']">
-          <div class="home__product-card-image" style="background-image: url(../../../../assets/image/250-24464-17z90p-g-ah76a5.png)"></div>
-          <h5 class="home__product-name"></h5>
+      <div class="col-private grid__col-5"  *ngFor="let item of listLaptop" [routerLink]="['/client',{outlets:{'client':['view',item.computerId]}}]">
+        <div class="home__product-card">
+          <div class="home__product-card-image" [style.background-image]="'url('+item.mainImage+')'"></div>
+          <h5 class="home__product-name">{{item.computerName}}</h5>
           <div class="home__product-price">
-            <span class="home__product-old-price"></span>
-            <span class="home__product-current-price"></span>
+            <span class="home__product-old-price">{{item.computerSalePrice}}</span>
+            <span class="home__product-current-price">{{item.computerImportPrice|formatText}}</span>
           </div>
           <div class="home__product-action">
                 <span class="action-like">
@@ -91,7 +91,7 @@
                 Yêu thích</span>
           </div>
           <div class="home__product-sale-off">
-            <span class="sale-off-percent"></span><br>
+            <span class="sale-off-percent">{{item.computerDiscount}}%</span><br>
             <span class="sale-off-lable">Giảm</span>
           </div>
         </div>
@@ -330,7 +330,6 @@
           <div class="home__product-action">
                 <span class="action-like">
                   <i class="far fa-heart"></i>
-                  <!--                  <i class="fas fa-heart"></i>-->
                 </span>
             <div class="action-rating">
               <i class="fas fa-star"></i>
@@ -357,4 +356,17 @@
       </div>
     </div>
   </div>
+</div>
+<div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" [ngClass]="{'disabled':page['number']-1<0}"><a class="page-link"  (click)="goToPage(page['number']-1)">Previous</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']-2)" *ngIf="page['number']-2>=0">{{page['number']-1}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']-1)" *ngIf="page['number']-1>=0">{{page['number']}}</a></li>
+      <li class="page-item active"><a class="page-link" (click)="goToPage(page['number'])">{{page['number']+1}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']+1)" *ngIf="page['number']+1<page['totalPages']">{{page['number']+2}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']+2)" *ngIf="page['number']+2<page['totalPages']">{{page['number']+3}}</a></li>
+      <li class="page-item" [ngClass]="{'disabled':page['last']}"><a class="page-link"   (click)="goToPage(page['number']+1)">Next</a></li>
+    </ul>
+  </nav>
 </div>

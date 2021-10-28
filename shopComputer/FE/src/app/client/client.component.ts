@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit {
+  displayFlat: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  controlInbox() {
+    this.displayFlat=!this.displayFlat;
+  }
+
+  closeBox(e: boolean) {
+    this.displayFlat=e;
+  }
 }

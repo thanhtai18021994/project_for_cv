@@ -20,6 +20,8 @@ public class Keyboard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "keyboard_id")
     private Long keyboardId;
+    @Column(name = "keyboard_code")
+    private String keyboardCode;
     private String keyboardName;
     private Double keyboardImportPrice;
     private Double keyboardSalePrice;
@@ -29,4 +31,6 @@ public class Keyboard {
     private String mainImage;
     @OneToMany(mappedBy = "keyboard")
     private Set<ImageDetailKeyboard> imageDetailKeyboards;
+    @ManyToOne()
+    private Provider provider;
 }

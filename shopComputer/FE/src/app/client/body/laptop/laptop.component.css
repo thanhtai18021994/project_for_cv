@@ -5,7 +5,7 @@
   width: 540px;
   z-index: 10;
   background-color: #fff;
-  padding: 1rem;
+  padding: 10px;
   border-radius: 5px;
   box-shadow:0 2px 20px rgba(0 ,0, 0, 0.5);
 }
@@ -28,7 +28,7 @@
   justify-content: space-between;
 }
 .btn{
-  font-size: 1.4rem;
+  font-size: 14px;
 }
 .category-image{
   width: 120px;
@@ -57,9 +57,12 @@
 
  .price-filter-item{
    width: fit-content;
-   padding:0.5rem 1rem;
+   padding:5px 10px;
    border: 1px solid #ccc;
-   font-size: 1.6rem;
-   margin: 0 1rem 1rem 0;
+   font-size: 16px;
+   margin: 0 10px 10px 0;
    border-radius: 4px;
  }
+.col-private{
+  margin-bottom: 10px;
+}

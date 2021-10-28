@@ -1,0 +1,16 @@
+<ul class="user_list">
+  <div class="search_user">
+    <input type="text" id="search">
+    <label for="search">
+      <i class="las la-search"></i>
+    </label>
+  </div>
+
+  <li *ngFor="let item of listRoom" >
+    <div class="user_item" (click)="goToRoom(item.roomname)">
+      <img src="https://e7.pngegg.com/pngimages/527/663/png-clipart-logo-person-user-person-icon-rectangle-photography.png" alt="">
+      <div class="name_user">{{item.nickname}}</div>
+    </div>
+  </li>
+</ul>
+

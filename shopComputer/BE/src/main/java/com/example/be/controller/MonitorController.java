@@ -5,6 +5,8 @@ import com.example.be.model.entity.Monitor;
 import com.example.be.model.service.monitor.IMonitorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -27,6 +29,12 @@ public class MonitorController {
     public ResponseEntity<List<Monitor>> findAll(){
         return new ResponseEntity<>(monitorService.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/paginate")
+    public ResponseEntity<?> findAllByPagination(Pageable pageable){
+        Page<Monitor> monitors=monitorService.getAll(pageable);
+        return new ResponseEntity<>(monitors, HttpStatus.OK);
+    }
     @GetMapping("/find/{id}")
     public ResponseEntity<Monitor> findById(@PathVariable Long id){
         Optional<Monitor> monitor=monitorService.findById(id);
@@ -35,6 +43,7 @@ public class MonitorController {
         }
         return new ResponseEntity<>(monitor.get(),HttpStatus.OK);
     }
+
     @PostMapping("/create")
     public ResponseEntity<List<FieldError>> create(@Valid @RequestBody MonitorDto monitorDto, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
@@ -45,6 +54,7 @@ public class MonitorController {
         monitorService.save(monitor);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<List<FieldError>> update(@Valid @RequestBody MonitorDto monitorDto,
                                                    BindingResult bindingResult,@PathVariable Long id){
@@ -70,4 +80,16 @@ public class MonitorController {
         monitorService.delete(monitor.get());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/findByName")
+    public ResponseEntity<Page<Monitor>> findByName(@RequestParam String name,Pageable pageable){
+       Page<Monitor> monitors=this.monitorService.findByName(name, pageable);
+       return new ResponseEntity<>(monitors,HttpStatus.OK);
+    }
+    @GetMapping("/findByManufacture")
+    public ResponseEntity<Page<Monitor>> findByManufacture(@RequestParam Long id,Pageable pageable){
+        Page<Monitor> monitors=monitorService.findByManufacture(id, pageable);
+        return new ResponseEntity<>(monitors,HttpStatus.OK);
+    }
+
 }

@@ -27,9 +27,6 @@ public class MonitorDto {
     private String view;
     private String pixelDensity;
     private String backgroundPanels;
-    private String pixelSize;
-    private String responsiveness;
-    private String refreshGFrequency;
     private boolean enable;
     private String mainImage;
     private Set<ImageDetailMonitor> imageDetailOfMonitor;

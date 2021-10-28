@@ -1,14 +1,35 @@
-<div class="container">
-  <div class="container-fluid d-flex justify-content-between p-3">
-    <h2>Dánh sách máy tính</h2>
-    <button class="btn btn-primary" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['computer','create']}}]}}]"><span><i class="las la-plus"></i></span>Thêm mới</button>
-  </div>
+<div class="filter">
+  <label>Lọc theo</label>
+  <select #element (click)="filterBy(element.value)">
+    <option value="1">Lọc theo tên sản phẩm</option>
+    <option value="2">Lọc theo hãng sản phẩm</option>
+    <option value="3">Lọc theo loại máy tính</option>
+  </select>
+  <input type="text" #valueSearch [ngStyle]="{'display':controlFilter[0]?'block':'none'}" [(ngModel)]="nameSearch">
+  <select  [ngStyle]="{'display':controlFilter[1]?'block':'none'}" #keySearch [(ngModel)]="manufactureSearch">
+    <option *ngFor="let item of manufactures" value="{{item.manufactureId}}">{{item.manufactureName}}</option>
+  </select>
+  <select [ngStyle]="{'display':controlFilter[2]?'block':'none'}" [(ngModel)]="typeComputerSearch">
+    <option *ngFor="let item of typeComputers" [value]="item.typeComputerId">{{item.typeComputerName}}</option>
+  </select>
+  <button class="btn btn-primary" (click)="filter(keySearch.value)">Lọc kết quả</button>
+  <label style="margin-left: 20px">Sắp xếp </label>
+  <select>
+    <option>Sắp xếp theo MSP</option>
+    <option>Sắp xếp theo giá</option>
+  </select>
+</div>
+<div class="content-computer" *ngIf="computerList">
+<div class="content-computer-title">
+  <h5>Danh sách máy tính</h5>
+  <button class="btn btn-primary" [routerLink]="['/admin',{outlets:{'admin':['product','computer','create']}}]">Thêm mới</button>
+</div>
   <div class="table-responsive">
     <table class="table table-bordered">
       <thead>
       <tr>
         <th>#</th>
-        <th>Tên sản phẩm</th>
+        <th class="table-name">Tên sản phẩm</th>
         <th>Hinh anh san pham</th>
         <th>Hang san pham</th>
         <th colspan="3" style="text-align: center">Thao tac</th>
@@ -16,16 +37,32 @@
       </thead>
       <tbody>
       <tr *ngFor="let item of computerList,index as i">
-        <td>{{i}}</td>
-        <td>{{item.computerName}}</td>
+        <td>{{i+1}}</td>
+        <td style="max-width: 200px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">{{item.computerName}}</td>
         <td><img src="{{item.mainImage}}" alt=""></td>
         <td>{{item.manufacture.manufactureName}}</td>
-        <td style="color: orange; text-align: center" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['computer','update']}}]}}]"><span><i class="las la-edit"></i></span></td>
-        <td style="color:red;text-align: center" (click)="deleteItem(item.computerId)"><span><i class="las la-trash-alt"></i></span></td>
-        <td style="color: #04aa6d;text-align: center" [routerLink]="['/admin',{outlets:{'admin':['product',{outlets:{'product':['computer','view']}}]}}]"><span><i class="las la-eye"></i></span></td>
+        <td style="color: orange; text-align: center"
+            [routerLink]="['/admin',{outlets:{'admin':['product','computer','update',item.computerId]}}]">
+          <span><i class="las la-edit"></i></span></td>
+        <td style="color:red;text-align: center" (click)="deleteItem(item.computerId)"><span><i
+          class="las la-trash-alt"></i></span></td>
+        <td style="color: #04aa6d;text-align: center"
+            [routerLink]="['/admin',{outlets:{'admin':['product','computer','view',item.computerId]}}]">
+          <span><i class="las la-eye"></i></span></td>
       </tr>
       </tbody>
     </table>
-    <app-pagination [currentPage]="page"></app-pagination>
   </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item" [ngClass]="{'disabled':page['number']-1<0}"><a class="page-link"  (click)="goToPage(page['number']-1)">Previous</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']-2)" *ngIf="page['number']-2>=0">{{page['number']-1}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']-1)" *ngIf="page['number']-1>=0">{{page['number']}}</a></li>
+      <li class="page-item active"><a class="page-link" (click)="goToPage(page['number'])">{{page['number']+1}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']+1)" *ngIf="page['number']+1<page['totalPages']">{{page['number']+2}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="goToPage(page['number']+2)" *ngIf="page['number']+2<page['totalPages']">{{page['number']+3}}</a></li>
+      <li class="page-item" [ngClass]="{'disabled':page['last']}"><a class="page-link"   (click)="goToPage(page['number']+1)">Next</a></li>
+    </ul>
+  </nav>
 </div>
+

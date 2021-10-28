@@ -1,4 +1,4 @@
-<div class="content-area-create">
+<div class="content-area-create container-fluid">
   <form *ngIf="computerForm" [formGroup]="computerForm" (ngSubmit)="onSubmit()">
     <div class="create-computer">
       <div class="form-input">
@@ -18,16 +18,6 @@
             <div class="form-group col-md-6">
               <label>Loại Máy tính(*):</label>
               <div class="form-type-computer">
-<!--                <div class="form-radio">-->
-<!--                  <input type="radio" name="pcs" id="laptop" value="1"-->
-<!--                         formControlName="pcs">-->
-<!--                  <label  for="laptop">Laptop</label>-->
-<!--                </div>-->
-<!--                <div class="form-radio">-->
-<!--                  <input type="radio" name="pcs" id="pc" value="2"-->
-<!--                         formControlName="pcs">-->
-<!--                  <label  for="pc">Pc,AIO,Server</label>-->
-<!--                </div>-->
                 <div class="form-radio" *ngFor="let item of pcs">
                   <input type="radio" name="pcs" id="{{'pc'+item.pcsId}}" [value]="item"
                          formControlName="pcs">

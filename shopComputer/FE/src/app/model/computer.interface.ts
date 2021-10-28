@@ -1,9 +1,11 @@
 import {Manufacture} from './manufacture.interface';
 import {TypeComputer} from './typeComputer.interface';
 import {Pcs} from './pcs.interface';
+import {Provider} from './provider.interface';
 
 export interface Computer {
   computerId:number;
+  computerCode:string;
   computerName:string;
   computerImportPrice:number;
   computerSalePrice:number;
@@ -24,4 +26,5 @@ export interface Computer {
   enable:boolean;
   mainImage:string;
   imageDetailOfComputers:string[];
+  provider:Provider;
 }

@@ -1,6 +1,7 @@
 .app {
   width: 45%;
   margin: 20px auto 0;
+  background-color: white;
 }
 .app-directive{
   display: flex;
@@ -49,6 +50,7 @@
   width: 120px;
   margin-right: 20px;
   position: relative;
+  cursor: pointer;
 }
 
 .delete-icon{
@@ -65,8 +67,8 @@
 }
 .app__content-product-price{
   flex: 1;
-  display: flex;
   justify-content: flex-end;
+  text-align: end;
 }
 
 .app__content-product-price span:first-child{
@@ -80,6 +82,28 @@ font-size: 14px;
   display: block;
   color: #666;
   text-decoration: line-through;
+}
+.app__content-product-price ul{
+  margin-top: 20px;
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid #cccccc;
+  display: flex;
+  width: 90px;
+}
+.app__content-product-price li{
+  flex: 1;
+  text-align: center;
+  height: 30px;
+  vertical-align: center;
+}
+.app__content-product-price li:first-child{
+  border-right: 1px solid #cccccc;
+  cursor: pointer;
+}
+.app__content-product-price li:last-child{
+  border-left: 1px solid #cccccc;
+  cursor: pointer;
 }
 .coutn__bill{
   padding: 10px 30px;
@@ -135,7 +159,7 @@ font-size: 14px;
   padding: 10px 30px;
   border-bottom: 1px solid #ccc;
 }
-.infor-customer p{
+.infor-customer .infor-customer-name{
   font-size: 14px;
   font-weight: 400;
   color: #333;
@@ -203,4 +227,56 @@ font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
   margin-top: 12px;
+}
+.current_user-form{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  position: relative;
+}
+.address-input{
+  width: 150px;
+  border: 1px solid #cccccc;
+  outline: #cccccc;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+.address-list{
+  position: absolute;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  top: 40px;
+  display: none;
+  box-shadow: 0 8px 60px 0 rgba(103, 151, 255, .11), 0 12px 90px 0 rgba(103, 151, 255, .11);
+  border-radius: 4px;
+}
+.address-list li{
+  cursor: pointer;
+}
+.province{
+  left: 0px;
+}
+.district{
+  left: 165px;
+}
+.ward{
+  left: 300px;
+}
+.street{
+  width: 100%;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.street input{
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 4px 10px;
 }

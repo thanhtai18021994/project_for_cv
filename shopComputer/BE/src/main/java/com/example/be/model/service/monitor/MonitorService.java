@@ -39,4 +39,14 @@ public class MonitorService implements IMonitorService{
     public void delete(Monitor monitor) {
         monitorRepo.delete(monitor);
     }
+
+    @Override
+    public Page<Monitor> findByName(String name, Pageable pageable) {
+        return monitorRepo.findByName(name, pageable);
+    }
+
+    @Override
+    public Page<Monitor> findByManufacture(Long id, Pageable pageable) {
+        return monitorRepo.findByManufacture(id, pageable);
+    }
 }

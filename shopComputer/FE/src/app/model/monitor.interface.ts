@@ -1,7 +1,9 @@
 import {Manufacture} from './manufacture.interface';
+import {Provider} from './provider.interface';
 
 export interface Monitor {
   monitorId:number;
+  monitorCode:string;
   monitorName:string;
   monitorImportPrice:number;
   monitorSalePrice:number;
@@ -11,12 +13,9 @@ export interface Monitor {
   resolution:string;
   screenRatio:string;
   view:string;
-  pixelDensity:string;
   backgroundPanels:string;
-  pixelSize:string;
-  responsiveness:string;
-  refreshGFrequency:string;
   enable:string;
   mainImage:string;
   imageDetailOfMonitor:string[];
+  provider:Provider;
 }

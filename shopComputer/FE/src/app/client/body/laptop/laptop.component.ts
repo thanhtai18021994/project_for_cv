@@ -18,14 +18,14 @@ export class LaptopComponent implements OnInit {
   idSearch: number[] = [];
   isBooleanPriceTable:boolean=true;
   priceTable:number[]=[];
+  page: any;
   constructor(
     private computerService: ComputerService
   ) {
   }
 
   ngOnInit(): void {
-    this.getComputer();
-    this.computerService.getAll()
+    this.getProd();
   }
 
   getComputer(){
@@ -39,9 +39,14 @@ export class LaptopComponent implements OnInit {
     })
   }
 
-  onGetListComputer(value: any) {
-    this.listPc = value;
+  getProd(){
+    this.computerService.getAllByPaginate({page:0,size:10}).subscribe(data=>{
+      this.listLaptop=data['content'];
+      this.page=data;
+      console.log(this.listLaptop);
+    })
   }
+
 
   changeStatus() {
     if (this.isBoolean === true) {
@@ -62,5 +67,13 @@ export class LaptopComponent implements OnInit {
     }else {
       this.isBooleanPriceTable=true;
     }
+  }
+
+  goToPage(number: number) {
+    const request={page:number,size:10};
+    this.computerService.getAllByPaginate(request).subscribe(data=>{
+      this.listLaptop=data['content'];
+      this.page=data['size'];
+    })
   }
 }

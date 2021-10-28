@@ -26,7 +26,7 @@ public class User implements Serializable {
     @Column(name = "userId")
     private Integer id;
 
-    @Column(name = "fullName")
+    @Column(name = "full_name")
     private String fullName;
 
     @Column(nullable = false, name = "email")
@@ -35,7 +35,7 @@ public class User implements Serializable {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "numberPhone")
+    @Column(name = "number_phone")
     private String numberPhone;
 
     @Column(name = "imageAvatarOfUser")
@@ -53,7 +53,8 @@ public class User implements Serializable {
     @Column(name = "updated_At")
     private Timestamp updatedAt;
 
-
+    @OneToOne
+    private Cart cart;
     @ManyToMany
     @JoinTable(
             name = "user_role",

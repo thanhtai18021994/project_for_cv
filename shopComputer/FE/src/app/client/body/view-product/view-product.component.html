@@ -1,46 +1,18 @@
-<div class="grid wide">
+<div class="grid wide" *ngIf="currentComputer">
   <div class="row">
     <div class="col-private l-7">
       <div id="show-img" class="carousel slide myslide mt-3" data-ride="carousel">
         <ul class="carousel-indicators">
           <li data-target="#show-img" data-slide-to="0" class="active"></li>
-          <li data-target="#show-img" data-slide-to="1"></li>
-          <li data-target="#show-img" data-slide-to="2"></li>
-          <li data-target="#show-img" data-slide-to="3"></li>
-          <li data-target="#show-img" data-slide-to="4"></li>
-          <li data-target="#show-img" data-slide-to="5"></li>
+          <li *ngFor="let item of currentComputer.imageDetailOfComputers; index as i" data-target="#show-img" data-slide-to="{{i+1}}"></li>
         </ul>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="../../../../assets/image/laptopdetail/lap1/hp-340s-g7-i3-240q4pa-10-org.jpg" alt="Los Angeles"
-                 style="width: 100%;">
-
-          </div>
-          <div class="carousel-item">
-            <img src="../../../../assets/image/laptopdetail/lap1/hp-340s-g7-i3-240q4pa-11-org.jpg" alt="Chicago"
+            <img [src]="currentComputer.imageDetailOfComputers[0]['url']" alt="Los Angeles"
                  style="width: 100%;">
           </div>
-          <div class="carousel-item">
-            <img src="../../../../assets/image/laptopdetail/lap1/hp-340s-g7-i3-240q4pa-12-org.jpg" alt="New York"
-                 style="width: 100%;">
-
-          </div>
-          <div class="carousel-item">
-            <img src="../../../../assets/image/laptopdetail/lap1/hp-340s-g7-i3-240q4pa-2-1-org.jpg" alt="New York"
-                 style="width: 100%;">
-
-          </div>
-          <div class="carousel-item">
-            <img src="../../../../assets/image/laptopdetail/lap1/hp-340s-g7-i3-240q4pa-3-org.jpg" alt="New York"
-                 style="width: 100%;">
-
-          </div>
-          <div class="carousel-item">
-            <img src="../../../../assets/image/laptopdetail/lap1/hp-340s-g7-i3-240q4pa-4-1-org.jpg" alt="New York"
-                 style="width: 100%;">
-          </div>
-          <div class="carousel-item">
-            <img src="../../../../assets/image/laptopdetail/lap1/hp-340s-g7-i3-240q4pa-5-1-org.jpg" alt="New York"
+          <div class="carousel-item" *ngFor="let item of currentComputer.imageDetailOfComputers">
+            <img src="{{item['url']}}" alt="Chicago"
                  style="width: 100%;">
           </div>
         </div>
@@ -51,25 +23,10 @@
           <span class="carousel-control-next-icon"></span>
         </a>
       </div>
-      <!--      <div class="row">-->
-      <!--        <ul class="image-list">-->
-      <!--          <li class="iamge-item">-->
-      <!--            <span><img src=""></span>-->
-      <!--            <span>Điểm nổi bật</span></li>-->
-      <!--          <li class="iamge-item">1 video</li>-->
-      <!--          <li class="iamge-item">Xanh dương</li>-->
-      <!--          <li class="iamge-item">Đen</li>-->
-      <!--          <li class="iamge-item">Hình mở hộp</li>-->
-      <!--        </ul>-->
-      <!--      </div>-->
+
       <div class="evaluate">
-        <h4 class="evaluate-title">Laptop Lenovo Ideapad Gaming 3 15IMH05
-          i7 (81Y4013UVN) là dòng laptop gaming tầm trung với thiết kế tối giản, vẻ ngoài không quá hầm hố nhưng vẫn sở
-          hữu
-          hiệu năng cao đáp ứng tốt từ nhu cầu làm việc đến giải trí.</h4>
+        <h4 class="evaluate-title">{{currentComputer.computerName}}</h4>
         <div class="evaluate-rating">
-          <div></div>
-          <app-ngbd-rating-basic></app-ngbd-rating-basic>
           <div class="row">
             <div class="col-lg-5">
               <h5>6 Đánh giá</h5>
@@ -167,15 +124,15 @@
     <div class="col-private l-5">
       <div class="description-product">
         <div>
-          <h4 class="title-product">Laptop HP 340s G7 i3 1005G1/4GB/256GB/Win10 (240Q4PA)</h4>
+          <h4 class="title-product">{{currentComputer.computerName}}</h4>
         </div>
         <h4 class="price-product">
-          <span>Giá sản phẩm:</span> <span>20.000.000 <sup>đ</sup></span>
+          <span>Giá sản phẩm:</span> <span>{{currentComputer.computerSalePrice|formatText}}</span>
         </h4>
         <div class="promotion">
           <div class="promotion-header">
             <h4>mua online giảm sốc <span>15%</span> còn</h4>
-            <p class="promotion-header-price">19.880.000 <sup>đ</sup></p>
+            <p class="promotion-header-price">{{currentComputer.computerSalePrice|formatText}}</p>
           </div>
           <div class="promotion-content">
             <small>Giá và khuyến mãi dự kiến áp dụng đến 23:00 31/05, không áp dụng trả góp lãi suất đặc biệt
@@ -194,7 +151,7 @@
         </div>
         <div class="payment">
           <div class="payment-shopping">
-            <button>MUA NGAY</button>
+            <button (click)="addToCart()">MUA NGAY</button>
           </div>
           <div class="payment-style">
             <button style="margin-left: 0;">
@@ -211,34 +168,33 @@
         <p class="phone-to-buy">Gọi đặt mua <span>1800.1060 </span> (7:30 - 22:00)</p>
       </div>
       <div class="product-detail">
-        <h4 class="product-detail-title">Cấu hình Laptop Lenovo Ideapad Gaming 3 15IMH05 i7 10750H/8GB/512GB/4GB
-          GTX1650Ti/120Hz/Win10 (81Y4013UVN)</h4>
+        <h4 class="product-detail-title">{{currentComputer.computerName}}</h4>
         <table class="table table-striped product-detail-table">
           <tbody>
           <tr>
             <td>CPU:
             </td>
-            <td>Intel Core i7 Comet Lake10750H2.60 GHz</td>
+            <td>{{currentComputer.cpu}}</td>
           </tr>
           <tr>
             <td>RAM:
             </td>
-            <td>8 GBDDR4 (2 khe)2933 MHz</td>
+            <td>{{currentComputer.ram}}</td>
           </tr>
           <tr>
             <td>Ổ cứng
             </td>
-            <td>Hỗ trợ khe cắm HDD SATASSD 512 GB NVMe PCIe</td>
+            <td>{{currentComputer.hardDrive}}</td>
           </tr>
           <tr>
             <td>Màn hình
             </td>
-            <td>15.6"Full HD (1920 x 1080), 120Hz</td>
+            <td>{{currentComputer.screen}}</td>
           </tr>
           <tr>
             <td>Card màn hình:
             </td>
-            <td>Card rờiNVIDIA GeForce GTX 1650Ti 4 GB</td>
+            <td>{{currentComputer.graphicCard}}</td>
           </tr>
           </tbody>
         </table>

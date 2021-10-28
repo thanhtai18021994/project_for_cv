@@ -14,6 +14,11 @@ export class MonitorService {
   public getAll():Observable<Monitor[]>{
     return this.http.get<Monitor[]>(`${this.URL}`);
   }
+
+  public getAllByPagination(request):Observable<Monitor[]>{
+    const params=request;
+    return this.http.get<Monitor[]>(`${this.URL}/paginate`,{params});
+  }
   public findById(id:number):Observable<Monitor>{
     return this.http.get<Monitor>(`${this.URL}/find/${id}`);
   }
@@ -25,5 +30,11 @@ export class MonitorService {
   }
   public delete(id:number):Observable<void>{
     return this.http.delete<void>(`${this.URL}/delete/${id}`);
+  }
+  public findByName(name:string,params):Observable<Monitor[]>{
+    return this.http.get<Monitor[]>(`${this.URL}/findByName?name=name`,{params})
+  }
+  public findByManufacture(id:number,params):Observable<Monitor[]>{
+    return this.http.get<Monitor[]>(`${this.URL}/findByManufacture`,{params})
   }
 }

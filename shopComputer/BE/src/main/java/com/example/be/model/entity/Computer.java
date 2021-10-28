@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -18,12 +19,14 @@ public class Computer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "computer_id")
     private Long computerId;
+    @Column(name = "computer_code")
+    private String computerCode;
     @Column(name = "computer_name")
     private String computerName;
     @Column(name = "import_price")
-    private Double computerImportPrice;
+    private BigDecimal computerImportPrice;
     @Column(name = "computer_sale_price")
-    private Double computerSalePrice;
+    private BigDecimal computerSalePrice;
     @Column(name = "computer_discount")
     private Double computerDiscount;
     @ManyToOne()
@@ -59,8 +62,10 @@ public class Computer {
     private String releaseTime;
     @Column(name = "enable")
     private boolean enable;
+    private Integer stock;
+    @ManyToOne()
+    private Provider provider;
     private String mainImage;
     @OneToMany(mappedBy = "computer")
-    @JsonBackReference
     private Set<ImageDetailOfComputer> imageDetailOfComputers;
 }

@@ -40,15 +40,10 @@ public class ComputerController {
     }
 
     @GetMapping("/product")
-    public ResponseEntity<Page<Computer>> findAllPagination(
-            @RequestParam (value = "page",defaultValue = "1") Integer page,
-            @RequestParam (value = "size",defaultValue = "5") Integer size,
-            @PageableDefault(sort = "computerName",direction = Sort.Direction.ASC) Pageable pageable
-    ){
-        pageable.
+    public ResponseEntity<?> findAllPagination(
+            Pageable pageable){
         Page<Computer> computers=computerService.getAll(pageable);
-        computers.getTotalElements();
-        return new ResponseEntity<>(computerService.getAll(pageable),HttpStatus.OK);
+        return new ResponseEntity<>(computers,HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
@@ -115,5 +110,22 @@ public class ComputerController {
         }
         computerService.delete(computer.get());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/findByName")
+    public ResponseEntity<Page<Computer>> findByName(@RequestParam String name,Pageable pageable){
+        Page<Computer> computers=computerService.findByName(name, pageable);
+        return new ResponseEntity<>(computers,HttpStatus.OK);
+    }
+
+    @GetMapping("/findByManufacture")
+    public ResponseEntity<Page<Computer>> findByManufacture(@RequestParam Long id,Pageable pageable){
+        Page<Computer> computers=computerService.findByManufacture(id, pageable);
+        return new ResponseEntity<>(computers,HttpStatus.OK);
+    }
+    @GetMapping("/findByTypeComputer")
+    public ResponseEntity<Page<Computer>> findByTypeComputer(@RequestParam Long id,Pageable pageable){
+        Page<Computer> computers=computerService.findByTypeComputer(id, pageable);
+        return new ResponseEntity<>(computers,HttpStatus.OK);
     }
 }

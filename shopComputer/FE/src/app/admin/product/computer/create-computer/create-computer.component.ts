@@ -10,7 +10,7 @@ import {Pcs} from '../../../../model/pcs.interface';
 import {Observable} from 'rxjs';
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {finalize} from 'rxjs/operators';
+import {finalize, map} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {ExtraService} from '../../../../service/extra.service';
 
@@ -27,7 +27,7 @@ export class CreateComputerComponent implements OnInit {
   selectedFile: File = null;
   downloadURL: Observable<string>;
   url:string;
-  subImage:string[]=[];
+  subImage:string[]=new Array();
   constructor(private fb: FormBuilder,
               private computerService: ComputerService,
               private extraService: ExtraService,
@@ -98,7 +98,8 @@ export class CreateComputerComponent implements OnInit {
       computerImportPrice: ['', [Validators.required, Validators.min(0)]],
       computerSalePrice: ['', [Validators.required]],
       computerDiscount: ['', Validators.required],
-      // mainImage: ['', Validators.required],
+      mainImage: ['', Validators.required],
+      subImage: ['', Validators.required],
       cpu: ['', [Validators.required]],
       ram: ['', [Validators.required]],
       hardDrive: ['', [Validators.required]],
@@ -129,6 +130,7 @@ export class CreateComputerComponent implements OnInit {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
             if (url) {
+              console.log(url);
               this.url=url;
             }
           });
@@ -151,6 +153,7 @@ export class CreateComputerComponent implements OnInit {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
             if (url) {
+              console.log(this.subImage);
               this.subImage[this.subImage.length]=url;
             }
           });
@@ -159,27 +162,46 @@ export class CreateComputerComponent implements OnInit {
       .subscribe(url => {
       });
   }
-
+  createCode():string{
+    var computer_code="CP_";
+    computer_code=computer_code+Math.floor(Math.random()*10000);
+    var computersCode:string[];
+    this.computerService.getAll().subscribe(data=>{
+      computersCode=data.map(x=>x.computerCode);
+      let flat=false;
+      for (let i = 0; i < computersCode.length; i++) {
+        if (computer_code==computersCode[i]){
+          flat=true;
+        }
+      }
+      if (flat){
+        this.createCode();
+      }
+    })
+    return computer_code;
+  }
 
   onSubmit() {
     const computer: Computer = this.computerForm.value;
-    computer.mainImage=this.url;
-    computer.imageDetailOfComputers=this.subImage;
+    this.computerForm.controls['mainImage'].setValue(this.url);
+    this.computerForm.controls['subImage'].setValue(this.subImage);
+    computer.imageDetailOfComputers=this.computerForm.controls['subImage'].value;
+    computer.mainImage=this.computerForm.controls['mainImage'].value;
+    computer.computerCode=this.createCode();
     console.log(computer);
     if (this.computerForm.invalid) {
-      console.log("err");
       Object.keys(this.computerForm.controls).forEach(field => {
         const control = this.computerForm.get(field);
         control.markAsTouched({onlySelf: true});
       });
     } else {
-      console.log("successful");
       this.computerService.create(computer).subscribe(result => {
         this.computerForm.reset();
+        this.url='';
+        this.subImage=[];
       });
     }
   }
-
 
   onCheckChange(event) {
     const formArray: FormArray = this.computerForm.get('featureComputers') as FormArray;

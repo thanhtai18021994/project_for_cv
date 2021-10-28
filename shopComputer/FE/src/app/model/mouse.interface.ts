@@ -1,5 +1,8 @@
+import {Provider} from './provider.interface';
+
 export interface Mouse {
   mouseId:string;
+  mouseCode:string;
   mouseName:string;
   mouseImportPrice:number;
   mouseSalePrice:number;
@@ -10,4 +13,5 @@ export interface Mouse {
   resolution:string;
   SupportedOperatingSystems:string;
   FrequencyResponse:string;
+  provider:Provider;
 }
